@@ -1,4 +1,4 @@
-import { Mongoose } from "mongoose";
+import Mongoose from "mongoose";
 
 const FoodSchema = new Mongoose.Schema({
   name: { type: String, required: true },

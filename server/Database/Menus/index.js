@@ -22,4 +22,4 @@ const MenuSchema = new Mongoose.Schema({
   ],
 });
 
-export const MenuModel = Mongoose.Model("Menus", MenuSchema);
+export const MenuModel = Mongoose.model("Menus", MenuSchema);
