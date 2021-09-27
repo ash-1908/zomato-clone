@@ -20,7 +20,7 @@ Method          POST
 */
 Router.post("/signup", async (req, res) => {
   try {
-    const { email, password, fullname, phoneNumber } = req.body.credentials;
+    const { email, password, fullName, phoneNumber } = req.body.credentials;
 
     // checking whether the email/phoneNumber exists
     const checkUserByEmail = await UserModel.findOne({ email });
@@ -38,7 +38,7 @@ Router.post("/signup", async (req, res) => {
 
     // creating a token
     const token = await jwt.sign(
-      { user: { fullname, email, phoneNumber } },
+      { user: { fullName, email } },
       process.env.tokenKey
     );
 

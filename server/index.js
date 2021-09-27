@@ -14,7 +14,7 @@ import ConnectDB from "./Database/connection";
 
 const Zomato = Express();
 
-Zomato.use(Express.urlencoded({ extended: false }));
+Zomato.use(Express.urlencoded({ extended: true }));
 Zomato.use(Express.json());
 Zomato.use(Cors());
 Zomato.use(Helmet());
