@@ -20,35 +20,20 @@ Method          POST
 */
 Router.post("/signup", async (req, res) => {
   try {
-    const { email, password, fullName, phoneNumber } = req.body.credentials;
+    //check if the user exists
+    await UserModel.findByEmailAndPhone(req.body.credentials);
+    
+    //if user doesnt exists store in db
+    const newUser = await UserModel.create(req.body.credentials);
 
-    // checking whether the email/phoneNumber exists
-    const checkUserByEmail = await UserModel.findOne({ email });
-
-    const checkUserByPhone = await UserModel.findOne({ phoneNumber });
-
-    // if user exists
-    if (checkUserByEmail || checkUserByPhone) {
-      return res.json({ error: "User already exists!" });
-    }
-
-    // if new user, encrypt and store password
-    const bcryptSalt = await bcrypt.genSalt(8);
-    const hashedPwd = await bcrypt.hash(password, bcryptSalt);
-
-    // creating a token
-    const token = await jwt.sign(
-      { user: { fullName, email } },
-      process.env.tokenKey
-    );
-
-    // store in db
-    await UserModel.create({ ...req.body.credentials, password: hashedPwd });
-
+    //generate jwt token
+    const token = newUser.genJwtToken();
+    
+    //return token
     return res.status(200).json({ token });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
+      return res.status(500).json({ error: error.message });
+    }
 });
 
 export default Router;
