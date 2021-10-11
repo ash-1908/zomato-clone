@@ -2,6 +2,7 @@
 import Express from "express";
 import Cors from "cors";
 import Helmet from "helmet";
+import Passport from "passport";
 
 // env
 require("dotenv").config();
@@ -9,19 +10,27 @@ require("dotenv").config();
 //API
 import Auth from "./API/Auth";
 
+//Config
+import GoogleConfig from "./Config/Google.config";
 
 //database connection
 import ConnectDB from "./Database/connection";
 
+//middlewares
 const Zomato = Express();
 
 Zomato.use(Express.urlencoded({ extended: true }));
 Zomato.use(Express.json());
 Zomato.use(Cors());
 Zomato.use(Helmet());
+Zomato.use(Passport.initialize());
+Zomato.use(Passport.session());
 
 Zomato.use("/auth", Auth);
+//passport
+GoogleConfig(Passport);
 
+//routes
 Zomato.get("/", (req, res) => {
   res.json({ message: "Success!" });
 });

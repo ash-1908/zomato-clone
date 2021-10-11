@@ -1,6 +1,6 @@
 //libraries
 import Express from "express";
-import bcrypt from "bcryptjs";
+import passport from "passport";
 
 //
 const Router = Express.Router();
@@ -54,6 +54,31 @@ Router.post("/signin", async (req, res) => {
   } catch (error){
     return res.status(201).json({error: error.message})
   }
+});
+
+/* 
+Route           /google
+Description     Google signin
+Params          None
+Access          Public
+Method          GET
+*/
+Router.get("/google", passport.authenticate("google", {
+  scope: [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ]
+}));
+
+/* 
+Route           /google/callback
+Description     Google Signin callback
+Params          None
+Access          Public
+Method          GET
+*/
+Router.get("/google/callback", passport.authenticate("google", {failureRedirect: "/"}), (req, res) => {
+  return res.json({token: req.session.passport.user.token});
 });
 
 export default Router;
