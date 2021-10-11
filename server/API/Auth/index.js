@@ -43,22 +43,16 @@ Access          Public
 Method          POST
 */
 Router.post("/signin", async (req, res) => {
-  const { email, password } = req.body.credentials;
-  const user = await UserModel.findOne({ email });
-  //check if the user exists
-  if(user) {
-    //check password
-    bcrypt.compare(password, user.password, (error, res) => {
-      if(error)
-        throw new Error(error);
-      if(!res)
-        throw new Error("Invalid password");
-    });
+  try{
+    //check if the user exists
+    const user = await UserModel.checkUserByEmail(req.body.credentials);
+  
     const token = user.genJwtToken();
-    res.status(200).json({message: "Success", token: token});
-  }
-  else {
-    res.status(201).json({Failed: "User doesn't exists"});
+    
+    res.status(200).json({message: "Success", token});
+
+  } catch (error){
+    return res.status(201).json({error: error.message})
   }
 });
 

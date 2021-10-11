@@ -45,4 +45,20 @@ UserSchema.methods.genJwtToken = function (){
   return jwt.sign({ user: this._id.toString() }, process.env.tokenKey);
 }
 
+UserSchema.statics.checkUserByEmail = async ({email, password}) => {
+  //check whether user exists
+  const doesUserExists = await UserModel.findOne({ email });
+
+  if(!doesUserExists)
+    throw new Error("User does not exists!");
+  
+  //check password
+  const doesPasswordMatch = await bcrypt.compare(password, doesUserExists.password);
+
+  if(!doesPasswordMatch)
+    throw new Error("Wrong Password!");
+  
+  return doesUserExists;
+}
+
 export const UserModel = Mongoose.model("Users", UserSchema);
