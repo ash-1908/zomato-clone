@@ -8,6 +8,13 @@ const Router = Express.Router();
 // Models
 import { UserModel } from "../../Database/allModels";
 
+//Validation
+import {
+  ValidateSignup,
+  ValidateSignin,
+} from "../../Validation/Authentication";
+
+
 // API
 
 /* 
@@ -19,6 +26,8 @@ Method          POST
 */
 Router.post("/signup", async (req, res) => {
   try {
+    await ValidateSignup(req.body.credentials);
+
     //check if the user exists
     await UserModel.findByEmailAndPhone(req.body.credentials);
     
@@ -44,6 +53,9 @@ Method          POST
 */
 Router.post("/signin", async (req, res) => {
   try{
+    await ValidateSignin(req.body.credentials);
+
+
     //check if the user exists
     const user = await UserModel.checkUserByEmail(req.body.credentials);
   
