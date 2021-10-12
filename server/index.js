@@ -13,6 +13,8 @@ import Restaurants from "./API/Restaurant";
 import Foods from "./API/Food";
 import Menus from "./API/Menu";
 import Images from "./API/Image";
+import Orders from "./API/Orders";
+import Reviews from "./API/Reviews";
 
 //Config
 //import GoogleConfig from "./Config/Google.config";
@@ -35,6 +37,8 @@ Zomato.use("/restaurant", Restaurants);
 Zomato.use("/food", Foods);
 Zomato.use("/menu", Menus);
 Zomato.use("/image", Images);
+Zomato.use("/order", Orders);
+Zomato.use("/review", Reviews);
 
 //passport
 // GoogleConfig(Passport);
