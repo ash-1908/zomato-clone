@@ -7,6 +7,9 @@ import {FoodModel} from "../../Database/allModels";
 //middleware
 const Router = Express.Router();
 
+//validation
+import {ValidateRestaurantId, ValidateCategory} from "../../Validation/food";
+
 /* 
 Route           /
 Description     Get all foods from a particular restaurant
@@ -17,6 +20,7 @@ Method          GET
 Router.get("/:_id", async (req, res) => {
     try {
         const {_id} = req.params;
+        await ValidateRestaurantId(_id);
         const foods = await FoodModel.find({restaurant: _id});
         return res.json({foods});
 
@@ -35,6 +39,7 @@ Method          GET
 Router.get("/c/:category", async (req, res) => {
     try {
         const {category} = req.params;
+        await ValidateCategory(category);
         const foods = await FoodModel.find({
             category: {
                 $regex : category, $options: "i"
