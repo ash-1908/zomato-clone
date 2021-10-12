@@ -11,6 +11,7 @@ require("dotenv").config();
 import Auth from "./API/Auth";
 import Restaurants from "./API/Restaurant";
 import Foods from "./API/Food";
+import Menus from "./API/Menu";
 
 //Config
 import GoogleConfig from "./Config/Google.config";
@@ -31,6 +32,8 @@ Zomato.use(Passport.session());
 Zomato.use("/auth", Auth);
 Zomato.use("/restaurant", Restaurants);
 Zomato.use("/food", Foods);
+Zomato.use("/menu", Menus);
+
 //passport
 GoogleConfig(Passport);
 
