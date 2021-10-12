@@ -43,3 +43,5 @@ Router.delete("/delete", async (req, res) => {
         return res.status(201).json({error: error.message});
     }
 });
+
+export default Router;
