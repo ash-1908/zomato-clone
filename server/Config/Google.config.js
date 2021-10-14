@@ -1,6 +1,7 @@
 //libraries
-import GoogleOAuth from "passport-google-oauth2";
+import GoogleOAuth from "passport-google-oauth20";
 import { UserModel } from "../Database/Users";
+require("dotenv").config();
 
 //strategy
 const GoogleStrategy = GoogleOAuth.Strategy;
@@ -39,6 +40,7 @@ export default (passport) => {
       }
     )
   );
+
   passport.serializeUser((userData, done) => done(null, { ...userData }));
   passport.deserializeUser((id, done) => done(null, id));
 };

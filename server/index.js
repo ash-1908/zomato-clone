@@ -3,7 +3,7 @@ import Express from "express";
 import Cors from "cors";
 import Helmet from "helmet";
 import passport from "passport";
-
+const session = require("express-session");
 // env
 require("dotenv").config();
 
@@ -18,7 +18,7 @@ import Reviews from "./API/Reviews";
 import Users from "./API/User";
 
 //Config
-//import GoogleConfig from "./Config/Google.config";
+import GoogleConfig from "./Config/Google.config";
 import RouteConfig from "./Config/Route.config";
 
 //database connection
@@ -31,6 +31,9 @@ Zomato.use(Express.urlencoded({ extended: true }));
 Zomato.use(Express.json());
 Zomato.use(Cors());
 Zomato.use(Helmet());
+Zomato.use(
+  session({ secret: "secret", resave: true, saveUninitialized: true })
+);
 Zomato.use(passport.initialize());
 Zomato.use(passport.session());
 
@@ -44,7 +47,7 @@ Zomato.use("/review", Reviews);
 Zomato.use("/user", Users);
 
 //passport
-// GoogleConfig(Passport);
+GoogleConfig(passport);
 RouteConfig(passport);
 
 //routes
