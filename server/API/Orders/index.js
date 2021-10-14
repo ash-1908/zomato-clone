@@ -1,17 +1,22 @@
 import Express from "express";
 import { OrderModel } from "../../Database/Orders";
+import passport from "passport";
 
 const Router = Express.Router();
 
+import {ValidateNewOrder, ValidateUserId} from "../../Validation/orders";
+
 /* 
 Route           /
-Description     get all orders based on _id
+Description     get all orders based on user _id
 Params          _id
 Access          Public
 Method          GET
 */
-Router.get("/:_id", async (req, res) => {
+Router.get("/:_id", passport.authenticate("jwt", {session: false}), async (req, res) => {
     try {
+        await ValidateUserId(req.params);
+
         const {_id} = req.params;
         const getOrders = await OrderModel.findOne({user: _id});
 
@@ -34,6 +39,9 @@ Method          POST
 */
 Router.post("/new/:_id", async (req, res) => {
     try {
+        await ValidateUserId(req.params);
+        await ValidateNewOrder(req.body);
+
         const {_id} = req.params;
         const {newOrder} = req.body;
 
