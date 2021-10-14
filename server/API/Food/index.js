@@ -19,8 +19,10 @@ Method          GET
 */
 Router.get("/:_id", async (req, res) => {
     try {
+        await ValidateRestaurantId(req.params);
+
         const {_id} = req.params;
-        await ValidateRestaurantId(_id);
+        
         const foods = await FoodModel.find({restaurant: _id});
         return res.json({foods});
 
@@ -38,8 +40,9 @@ Method          GET
 */
 Router.get("/c/:category", async (req, res) => {
     try {
+        await ValidateCategory(req.params);
+
         const {category} = req.params;
-        await ValidateCategory(category);
         const foods = await FoodModel.find({
             category: {
                 $regex : category, $options: "i"

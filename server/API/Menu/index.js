@@ -4,6 +4,8 @@ import {MenuModel, ImageModel} from "../../Database/allModels";
 
 const Router = Express.Router();
 
+import {ValidateRestaurantId} from "../../Validation/food";
+
 /* 
 Route           /
 Description     Get all menu based on particular restaurant
@@ -14,6 +16,8 @@ Method          GET
 Router.get("/:_id", async (req, res) => {
     try {
         const {_id} = req.params;
+        await ValidateRestaurantId(_id);
+
         const menus = await MenuModel.find(_id);
         
         return res.json({menus});
@@ -25,7 +29,7 @@ Router.get("/:_id", async (req, res) => {
 
 /* 
 Route           /image
-Description     Get menu image based on id
+Description     Get menu image based on restaurant id
 Params          _id
 Access          Public
 Method          GET
@@ -33,6 +37,8 @@ Method          GET
 Router.get("/image/:_id", async (req, res) => {
     try {
         const {_id} = req.params;
+        await ValidateRestaurantId(_id);
+        
         const menuImage = await ImageModel.findOne(_id);
         
         return res.json({ menuImage });

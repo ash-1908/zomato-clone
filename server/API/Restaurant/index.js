@@ -3,15 +3,23 @@ import express from "express";
 
 const Router = express.Router();
 
+import {
+  ValidateRestaurantCity,
+  ValidateRestaurantId,
+  ValidateRestaurantSearchString,
+} from "../../Validation/restaurant";
+
 /* 
 Route           /
-Description     Get all restaurants details
+Description     Get all restaurants details based on city
 Params          None
 Access          Public
 Method          GET
 */
-Router.get("/", async (req, res) => {
+Router.get("/:city", async (req, res) => {
     try {
+        await ValidateRestaurantCity(city);
+
         //get city query from url
         const {city} = req.query;
         //find all the restaurants from the given city
@@ -25,13 +33,15 @@ Router.get("/", async (req, res) => {
 
 /* 
 Route           /
-Description     Get a particular restaurant
+Description     Get a particular restaurant based on id
 Params          _id
 Access          Public
 Method          GET
 */
 Router.get("/:_id", async (req, res) => {
     try{
+        await ValidateRestaurantId(req.params);
+
         //get id parameter from url
         const {_id} = req.params;
         //find restaurant
@@ -48,15 +58,16 @@ Router.get("/:_id", async (req, res) => {
 
 /* 
 Route           /
-Description     Get restaurant details search
-Params          none
-Body            searchString
+Description     Get restaurant details from search
+Params          searchString        
 Access          Public
 Method          GET
 */
-Router.get("/search", async (req, res) => {
+Router.get("/:searchString", async (req, res) => {
     try {
-        const {searchString} = req.body;
+        await ValidateRestaurantSearchString(req.params);
+
+        const {searchString} = req.params;
 
         const restaurants = await RestaurantModel.find({
             name: {$regex: searchString, $options: "i"}
