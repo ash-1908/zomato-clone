@@ -55,7 +55,6 @@ Router.post("/signin", async (req, res) => {
   try{
     await ValidateSignin(req.body.credentials);
 
-
     //check if the user exists
     const user = await UserModel.checkUserByEmail(req.body.credentials);
   
