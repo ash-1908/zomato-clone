@@ -23,7 +23,7 @@ Router.get("/:_id", passport.authenticate("jwt", {session: false}), async (req, 
         if(!getOrders)
             return res.status(404).json({error: "User not found"});
 
-        return getOrders;
+        return res.status(200).json({ orders: getOrders });
 
     } catch (error) {
         return res.status(201).json({error: error.message});

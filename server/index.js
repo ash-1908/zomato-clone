@@ -2,7 +2,7 @@
 import Express from "express";
 import Cors from "cors";
 import Helmet from "helmet";
-//import Passport from "passport";
+import passport from "passport";
 
 // env
 require("dotenv").config();
@@ -19,6 +19,7 @@ import Users from "./API/User";
 
 //Config
 //import GoogleConfig from "./Config/Google.config";
+import RouteConfig from "./Config/Route.config";
 
 //database connection
 import ConnectDB from "./Database/connection";
@@ -30,8 +31,8 @@ Zomato.use(Express.urlencoded({ extended: true }));
 Zomato.use(Express.json());
 Zomato.use(Cors());
 Zomato.use(Helmet());
-// Zomato.use(Passport.initialize());
-// Zomato.use(Passport.session());
+Zomato.use(passport.initialize());
+Zomato.use(passport.session());
 
 Zomato.use("/auth", Auth);
 Zomato.use("/restaurant", Restaurants);
@@ -44,6 +45,7 @@ Zomato.use("/user", Users);
 
 //passport
 // GoogleConfig(Passport);
+RouteConfig(passport);
 
 //routes
 Zomato.get("/", (req, res) => {
