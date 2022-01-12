@@ -10,6 +10,7 @@ function App() {
 	return (
 		<>
 			<HomeLayoutHOC path="/" exact component={Temp} />
+			<HomeLayoutHOC path="/:tab" exact component={Temp} />
 		</>
 	);
 }

@@ -9,7 +9,7 @@ import { BiSearchAlt } from "react-icons/bi";
 const MobileNav = () => {
 	return (
 		<div className="flex justify-between items-center">
-			<div className="w-24">
+			<div className="w-24 px-0.5 md:w-28">
 				<img
 					src="https://ops.runnr.in/assets/zomato_logo_black-72e759139bb73d92afb5f8ae0b2485b7cb023a5474859f2b6e22fdd8b83d2fc0.png"
 					alt="Logo"
@@ -17,7 +17,7 @@ const MobileNav = () => {
 				/>
 			</div>
 			<div className="flex items-center">
-				<button className="bg-zred-400 text-white px-3 py-2 rounded-full">
+				<button className="bg-zred-400 text-white text-sm px-3 py-2 rounded-full">
 					Use App
 				</button>
 				<span className="border border-gray-300 text-zred-400 rounded-full p-2 ml-2">
@@ -32,7 +32,7 @@ const LgNav = () => {
 	return (
 		<div className="w-full flex items-center justify-between py-3">
 			<div className="w-3/4 flex items-center">
-				<div className="w-1/6 mr-5">
+				<div className="w-32 mr-5">
 					<img
 						src="https://ops.runnr.in/assets/zomato_logo_black-72e759139bb73d92afb5f8ae0b2485b7cb023a5474859f2b6e22fdd8b83d2fc0.png"
 						alt="Logo"
@@ -84,7 +84,7 @@ const Navbar = () => {
 				<div className="p-4 bg-white shadow-md lg:hidden">
 					<MobileNav />
 				</div>
-				<div className="hidden lg:block w-3/4 px-2 mx-auto">
+				<div className="hidden lg:block">
 					<LgNav />
 				</div>
 			</nav>
