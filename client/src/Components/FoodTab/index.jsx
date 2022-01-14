@@ -77,8 +77,8 @@ const LgTab = () => {
         <Link to={`/${cur.id}`}>
           <div className={`p-3 text-center z-10 ${cur.id === tab ? "border-b-2 transition duration-700 ease-in-out border-zred-400" : "border-gray-200"}`}>
             <div className="flex flex-row items-center">
-              <div className={`w-14 mr-3 rounded-full p-3 ${cur.id == tab ? `bg-${cur.color}-200` : ""}`}>
-                <img src={`${cur.id == tab ? cur.activeIcon : cur.icon}`} alt={cur.name} className="w-full h-full" />
+              <div className={`w-14 mr-3 rounded-full p-3 ${cur.id === tab ? `bg-${cur.color}-200` : ""}`}>
+                <img src={`${cur.id === tab ? cur.activeIcon : cur.icon}`} alt={cur.name} className="w-full h-full" />
               </div>
               <div className="text-sm">{cur.name}</div>
             </div>
