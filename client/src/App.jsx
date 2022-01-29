@@ -2,15 +2,17 @@
 import HomeLayoutHOC from "./HOC/Home.HOC";
 
 //Component
-import Temp from "./Components/Temp.Component";
+import Master from "./Components/Master";
+import Re_direct from "./Components/Re_direct";
 
-//Libraries
+//Hooks
+import {Route} from "react-router-dom";
 
 function App() {
 	return (
 		<>
-			<HomeLayoutHOC path="/" exact component={Temp} />
-			<HomeLayoutHOC path="/:tab" exact component={Temp} />
+			<Route path="/" exact component={Re_direct} />
+			<HomeLayoutHOC path="/:tab" exact component={Master} />
 		</>
 	);
 }

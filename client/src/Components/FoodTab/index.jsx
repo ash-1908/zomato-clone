@@ -8,7 +8,7 @@ import {GiWineGlass} from "react-icons/gi";
 import {CgGym} from "react-icons/cg";
 
 const MobileTab = () => {
-  const {tab} = useParams();
+  const {tab = "delivery"} = useParams();
   const [tabs, setTabs] = useState([{
     id: "delivery",
     name: "Delivery",
@@ -42,7 +42,7 @@ const MobileTab = () => {
 };
 
 const LgTab = () => {
-  const {tab} = useParams();
+  const {tab = "delivery"} = useParams();
   const [tabs, setTabs] = useState([{
     id: "delivery",
     name: "Delivery",
@@ -72,10 +72,10 @@ const LgTab = () => {
   }]);
 
   return <>
-    <div className="hidden lg:flex lg:flex-row lg:grid lg:grid-cols-4">
+    <div className="hidden lg:flex lg:flex-row lg:grid lg:grid-cols-4 lg:h-26">
       {tabs.map((cur) => (
         <Link to={`/${cur.id}`}>
-          <div className={`p-3 text-center z-10 ${cur.id === tab ? "border-b-2 transition duration-700 ease-in-out border-zred-400" : "border-gray-200"}`}>
+          <div className={`p-3 lg:h-full text-center z-10 ${cur.id === tab ? "border-b-2 transition duration-700 ease-in-out border-zred-400" : "border-gray-200"}`}>
             <div className="flex flex-row items-center">
               <div className={`w-14 mr-3 rounded-full p-3 ${cur.id === tab ? `bg-${cur.color}-200` : ""}`}>
                 <img src={`${cur.id === tab ? cur.activeIcon : cur.icon}`} alt={cur.name} className="w-full h-full" />

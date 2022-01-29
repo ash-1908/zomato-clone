@@ -8,11 +8,11 @@ import FoodTab from "../Components/FoodTab";
 
 const HomeLayout = (props) => {
 	return <>
-			<header className="lg:container lg:mx-auto lg:px-56 lg:border-b lg:border-gray-100">
+			<header className="container mx-auto lg:px-40 lg:border-b lg:border-gray-100">
 				<Navbar/>
 				<FoodTab />
 			</header>
-			<div className="container mx-auto px-4 lg:px-56">
+			<div className="container mx-auto px-5 lg:px-40">
 				{props.children}
 			</div>
 	</>;
