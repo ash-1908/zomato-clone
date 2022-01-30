@@ -106,7 +106,7 @@ const Carousal = () => {
   },
   {
     image: "https://b.zmtcdn.com/data/brand_creatives/logos/7d607a40589cca86b4db13542b82a319_1605092761.png?output-format=webp",
-    title: "Gopal Das Pethe Wale"
+    title: "G.D Pethe Wale"
   },
   {
     image: "https://b.zmtcdn.com/data/brand_creatives/logos/2205f22bebf36e6a48d46ba89dd04fea_1630656969.png?output-format=webp",
@@ -144,6 +144,13 @@ const Carousal = () => {
       <h1 className='relative text-xl md:text-3xl text-left font-semibold my-10'>
       Top brands for you
     </h1>
+      {/* small screen */}
+    <div className='md:hidden flex flex-wrap my-3 md:my-6 justify-around'>
+      {brands.map((brand) => (
+        <Category {...brand} />
+      ))}
+    </div>
+      {/* large screen */}
       <div className='hidden md:block'>
         <Slider {...settings}>
         {brands.map((brand) => (

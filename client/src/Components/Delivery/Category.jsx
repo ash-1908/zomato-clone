@@ -2,12 +2,12 @@ import React from 'react';
 
 const CategorySm = (props) => {
   return (
-    <div className='mb-3 md:mb-5'>
+    <div className='mb-3'>
       <div className='w-20'>
         <img src={props.image} alt={props.title}
         className='w-full h-full object-cover rounded-full' />
       </div>
-      <h3 className='text-center text-sm md:text-xl'>{props.title}</h3>
+      <h3 className='text-center text-xs'>{props.title}</h3>
     </div>
     );
 }
