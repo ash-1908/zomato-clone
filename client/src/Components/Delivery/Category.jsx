@@ -14,7 +14,7 @@ const CategorySm = (props) => {
 
 const CategoryLg = (props) => {
   return (
-    <div className='w-32 mx-10'>
+    <div className='w-32 lg:mx-6 xl:mx-12'>
       <div className='w-full'>
         <img src={props.image} alt={props.title}
         className='w-full h-full object-cover rounded-full' />

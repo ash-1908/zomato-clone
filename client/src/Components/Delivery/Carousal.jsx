@@ -8,13 +8,29 @@ import {PrevArrow} from '../CustomArrows/PrevArrow';
 
 const Carousal = () => {
 
-  const settings = {
+  let settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
+    initialSlide: 0,
     nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1
+        }
+      },
+    ]
   };
 
   const categories = [
@@ -68,12 +84,42 @@ const Carousal = () => {
     }
   ]
 
+  const brands = [{
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/775f928725d1a9dd80422632de22c224_1611376239.png?output-format=webp",
+    title: "McDonald's"
+  },
+  {
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/3bd971b1a5783e208a9782c3604fa9f3_1601885754.png?output-format=webp",
+    title: "La Pino'z Pizza"
+  },
+  {
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/c38f7540bcc5a38e918856ac06409056_1504531339.png?output-format=webp",
+    title: "Pizza Hut"
+  },
+  {
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/4d016eeff686a88becd56bba073f18cd_1605111085.png?output-format=webp",
+    title: "Bikanervala"
+  },
+  {
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/5caf38856d23347b351bb7abf97134d3_1521807172.png?output-format=webp",
+    title: "Domino's Pizza"
+  },
+  {
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/7d607a40589cca86b4db13542b82a319_1605092761.png?output-format=webp",
+    title: "Gopal Das Pethe Wale"
+  },
+  {
+    image: "https://b.zmtcdn.com/data/brand_creatives/logos/2205f22bebf36e6a48d46ba89dd04fea_1630656969.png?output-format=webp",
+    title: "UBQ by Barbeque Nation"
+  },
+]
+
   return (
   <>
     
-    {/* div for background color */}<div className='hidden md:block absolute left-0 bg-greyy-100 w-full -z-50 h-60' />
+    {/* div for background color */}<div className='hidden md:block absolute left-0 bg-greyy-100 w-full -z-50 h-64' />
 
-    <h1 className='relative text-xl text-left font-semibold md:text-4xl my-5'>
+    <h1 className='relative text-xl md:text-3xl text-left font-semibold my-10'>
       Inspiration for your first order
     </h1>
     
@@ -94,7 +140,18 @@ const Carousal = () => {
         </Slider>
     </div>
       {/* carousal ends */}
-    
+      {/* brand carousal begins */}
+      <h1 className='relative text-xl md:text-3xl text-left font-semibold my-10'>
+      Top brands for you
+    </h1>
+      <div className='hidden md:block'>
+        <Slider {...settings}>
+        {brands.map((brand) => (
+        <Category {...brand} />
+      ))}
+        </Slider>
+    </div>
+    {/* brand carousal ends */}
   </>);
 };
 
