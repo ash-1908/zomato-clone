@@ -2,15 +2,17 @@ import React from 'react';
 
 //components
 import Carousal from './Carousal';
+import RestaurantCard from './RestaurantCard';
 
 const Delivery = () => {
   return (<>
-    <div className='lg:hidden'>
       <Carousal />
-    </div>
-    <div className='hidden lg:block'>
-      <Carousal />
-    </div>
+      <div className='md:flex md:flex-wrap'>
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+      </div>
   </>);
 };
 
