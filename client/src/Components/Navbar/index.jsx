@@ -30,7 +30,7 @@ const MobileNav = () => {
 
 const LgNav = () => {
 	return (
-		<div className="w-full flex items-center justify-between py-3">
+		<div className="w-full flex items-center justify-between px-4 py-3">
 			<div className="w-3/4 flex items-center">
 				<div className="w-32 mr-5">
 					<img

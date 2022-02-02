@@ -5,7 +5,7 @@ import { AiFillStar } from "react-icons/ai";
 const RestaurantCard = () => {
 	return (
 		<div className="w-full md:w-1/2 lg:w-1/3 hover:shadow-xl rounded-xl p-2 my-5 border border-transparent transition ease-in-out duration-400 hover:border-gray-200">
-			<div className="relative w-full h-56 lg:h-64">
+			<div className="relative w-full h-56 xl:h-64">
 				<div className="absolute z-10 flex justify-between w-full items-end bottom-0 mb-2 text-sm text-white font-normal">
           <div className="flex flex-col">
             <span className="bg-zred-500 px-1 rounded-sm mb-3">

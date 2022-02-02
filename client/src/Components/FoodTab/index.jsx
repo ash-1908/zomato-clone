@@ -72,7 +72,7 @@ const LgTab = () => {
   }]);
 
   return <>
-    <div className="hidden lg:flex lg:flex-row lg:grid lg:grid-cols-4 lg:h-26">
+    <div className="hidden lg:flex lg:flex-row lg:grid lg:grid-cols-4 lg:h-26 lg:px-4">
       {tabs.map((cur) => (
         <Link to={`/${cur.id}`}>
           <div className={`p-3 lg:h-full text-center z-10 ${cur.id === tab ? "border-b-2 transition duration-700 ease-in-out border-zred-400" : "border-gray-200"}`}>
