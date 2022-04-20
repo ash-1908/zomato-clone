@@ -4,7 +4,7 @@ import {GrPrevious} from "react-icons/gr"
 export function PrevArrow(props) {
   return (
     <div
-    className="absolute rounded-full z-10 left-0 top-1/3 hover:cursor-pointer"
+    className="absolute rounded-full z-10 left-0 top-1/3 cursor-pointer hover:bg-gray-100 w-8 p-1"
     onClick={props.onClick}
     >
       <GrPrevious className="text-2xl" />
