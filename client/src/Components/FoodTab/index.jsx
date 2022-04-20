@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import {HiOutlineShoppingBag} from "react-icons/hi";
 import {RiFootprintLine} from "react-icons/ri";
 import {GiWineGlass} from "react-icons/gi";
-import {CgGym} from "react-icons/cg";
+
 
 const MobileTab = () => {
   const {tab = "delivery"} = useParams();
@@ -21,17 +21,13 @@ const MobileTab = () => {
     id: "nightlife",
     name: "Nightlife",
     icon: <GiWineGlass />
-  },{
-    id: "nutrition",
-    name: "Nutrition",
-    icon: <CgGym />
   }]);
 
   return <>
-    <div className="lg:hidden w-full grid grid-cols-4 fixed bottom-0 z-10">
+    <div className="lg:hidden w-full grid grid-cols-3 fixed bottom-0 z-50 bg-white">
         {tabs.map((cur) => (
           <Link to={`/${cur.id}`}>
-            <div className={`flex flex-col items-center py-1 transition duration-300 ease-in-out ${cur.id === tab ? "border-t-2 border-zred-400" : ""}`}>
+            <div className={`flex flex-col items-center py-2 transition duration-300 ease-in-out ${cur.id === tab ? "border-t-2 border-zred-400" : ""}`}>
               <div className="">{cur.icon}</div>
               <div className={``}>{cur.name}</div>
             </div>
@@ -61,18 +57,10 @@ const LgTab = () => {
     icon: "https://b.zmtcdn.com/data/o2_assets/01040767e4943c398e38e3592bb1ba8a1616150142.png",
     activeIcon: "https://b.zmtcdn.com/data/o2_assets/855687dc64a5e06d737dae45b7f6a13b1616149818.png",
     color: "blue"
-  },{
-    id: "nutrition",
-    name: "Nutrition",
-    icon:
-        "https://b.zmtcdn.com/data/o2_assets/54cad8274d3c3ec7129e0808a13b27c31616582882.png",
-    activeIcon:
-        "https://b.zmtcdn.com/data/o2_assets/0f6dcb1aef93fa03ea3f91f37918f3bc1616649503.png",
-        color: "zred"
   }]);
 
   return <>
-    <div className="hidden lg:flex lg:flex-row lg:grid lg:grid-cols-4 lg:h-26 lg:px-4">
+    <div className="hidden lg:flex lg:flex-row lg:grid lg:grid-cols-3 lg:h-26 lg:px-4">
       {tabs.map((cur) => (
         <Link to={`/${cur.id}`}>
           <div className={`p-3 lg:h-full text-center z-10 ${cur.id === tab ? "border-b-2 transition duration-700 ease-in-out border-zred-400" : "border-gray-200"}`}>

@@ -4,7 +4,7 @@ import { PrevArrow } from '../CustomArrows/PrevArrow';
 import PictureCarousalCard from '../PictureCarousal'
 import Slider from 'react-slick';
 
-const DiningCarousal = () => {
+const NightlifeCarousal = () => {
     let settings = {
 		infinite: true,
 		speed: 500,
@@ -57,4 +57,4 @@ const DiningCarousal = () => {
   )
 }
 
-export default DiningCarousal
+export default NightlifeCarousal
