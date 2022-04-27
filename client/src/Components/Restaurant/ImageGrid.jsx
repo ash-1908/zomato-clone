@@ -7,7 +7,7 @@ const ImageGrid = (props) => {
 	return (
 		<>
 			<div className='w-full h-52 md:hidden'>
-				<img src={props.images[0]} alt='Restaurant image' className='w-full h-full' />
+				<img src={props.images[0]} alt='Restaurant image' className='w-full h-full rounded-sm' />
 			</div>
 
 			<div className='hidden md:flex w-full h-96 justify-center mt-2 cursor-pointer'>
