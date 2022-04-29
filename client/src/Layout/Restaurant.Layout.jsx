@@ -5,6 +5,7 @@ import RestaurantNavbar from '../Components/Restaurant/Navbar'
 import ImageGrid from '../Components/Restaurant/ImageGrid'
 import RestaurantInfo from '../Components/Restaurant/RestaurantInfo'
 import InfoButtons from '../Components/Restaurant/InfoButtons'
+import TabContainer from '../Components/Restaurant/Tabs'
 
 //icons
 import {AiOutlineStar, AiOutlineShareAlt} from "react-icons/ai"
@@ -27,6 +28,9 @@ const RestaurantLayout = () => {
 				<InfoButtons ><RiDirectionLine className='mr-1' />Direction</InfoButtons>
 				<InfoButtons ><BsBookmarkPlus className='mr-1' />Bookmark</InfoButtons>
 				<InfoButtons ><AiOutlineShareAlt className='mr-1' />Share</InfoButtons>
+				</div>
+				<div className='my-3'>
+					<TabContainer />
 				</div>
 			</div>
 		</>
