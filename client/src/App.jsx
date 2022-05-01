@@ -4,7 +4,8 @@ import RestaurantLayoutHOC from "./HOC/Restaurant.HOC";
 
 //Pages
 import Home from "./Pages/Home";
-import Restaurant from "./Pages/Restaurant";
+//Restaurant Pages
+import Overview from "./Pages/Restaurant/Overview";
 
 //Hooks
 import {Route, Redirect} from "react-router-dom";
@@ -15,13 +16,15 @@ function App() {
 			<Route path="/" exact >
 				<Redirect to="/delivery" /> 
 			</Route>
+			<Route path="/restaurant/:id" exact>
+				<Redirect to="/restaurant/:id/overview" /> 
+			</Route>
 			<HomeLayoutHOC path="/:tab" exact component={Home} />
-			<RestaurantLayoutHOC path="/restaurant/:id" exact component={Restaurant} />
-			<RestaurantLayoutHOC path="/restaurant/:id/overview" exact component={Restaurant} />
-			<RestaurantLayoutHOC path="/restaurant/:id/order-online" exact component={Restaurant} />
-			<RestaurantLayoutHOC path="/restaurant/:id/photos" exact component={Restaurant} />
-			<RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component={Restaurant} />
-			<RestaurantLayoutHOC path="/restaurant/:id/menu" exact component={Restaurant} />
+			<RestaurantLayoutHOC path="/restaurant/:id/overview" exact component={Overview} />
+			<RestaurantLayoutHOC path="/restaurant/:id/order-online" exact component={Overview} />
+			<RestaurantLayoutHOC path="/restaurant/:id/photos" exact component={Overview} />
+			<RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component={Overview} />
+			<RestaurantLayoutHOC path="/restaurant/:id/menu" exact component={Overview} />
 		</>
 	);
 }

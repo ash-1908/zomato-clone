@@ -12,7 +12,7 @@ import {AiOutlineStar, AiOutlineShareAlt} from "react-icons/ai"
 import {RiDirectionLine} from "react-icons/ri"
 import {BsBookmarkPlus} from "react-icons/bs"
 
-const RestaurantLayout = () => {
+const RestaurantLayout = (props) => {
 	return (
 		<>
 			<header className="container mx-auto xl:px-40 lg:border-b lg:border-gray-100">
@@ -32,6 +32,7 @@ const RestaurantLayout = () => {
 				<div className='my-3'>
 					<TabContainer />
 				</div>
+				{props.children}
 			</div>
 		</>
 	)

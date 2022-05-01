@@ -6,7 +6,7 @@ const Tab = (props) => {
     const {id} = useParams();
     return (
     <Link to={`${props.path}`}>
-        <div className={classnames("font-semibold text-gray-500 px-1", {"border-b-2 border-zred-400 text-zred-400": props.isActive})}>
+        <div className={classnames("font-base text-gray-500 px-1 text-lg md:text-xl", {"border-b-2 border-zred-400 text-zred-400 font-semibold": props.isActive})}>
             {props.title}
         </div>
     </Link>
@@ -44,11 +44,13 @@ const TabContainer = () => {
     },
 ]
     return (
-    <div className='flex gap-10 overflox-x-scroll border-b border-collapse'>
+        <>
+    <div className='flex items-center gap-10 overflox-x-scroll border-b border-collapse'>
         {tabs.map((tabProps)=>(
             <Tab {...tabProps} key={`ResTab${tabProps.path}`} />
         ))}
     </div>
+    </>
   )
 }
 
