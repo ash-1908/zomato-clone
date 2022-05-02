@@ -45,7 +45,7 @@ const TabContainer = () => {
 ]
     return (
         <>
-    <div className='flex items-center gap-10 overflow-x-scroll border-b border-collapse'>
+    <div className='flex items-center gap-10 overflow-x-auto border-b border-collapse'>
         {tabs.map((tabProps)=>(
             <Tab {...tabProps} key={`ResTab${tabProps.path}`} />
         ))}
