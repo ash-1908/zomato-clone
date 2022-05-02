@@ -21,7 +21,7 @@ const RestaurantLayout = (props) => {
 			<div className="container mx-auto px-5 xl:px-40">
 				<ImageGrid images={["https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1"]} />
 				
-				<RestaurantInfo restaurantName="Rahil Restaurant" restaurantRating="4" deliveryRating="4.5" cuisine="North Indian, Chinease, Thai" address="Rathayatra, Varanasi" />
+				<RestaurantInfo restaurantName="Domino's" restaurantRating="4" deliveryRating="4.5" cuisine="Pizza" address="Rathayatra, Varanasi" />
 
 				<div className='flex flex-wrap'>
 				<InfoButtons isActive><AiOutlineStar className='mr-1' />Add Review</InfoButtons>
