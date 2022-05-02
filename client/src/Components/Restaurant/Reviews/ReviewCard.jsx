@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai'
 
 const ReviewCard = () => {
     return (
-        <div className='px-3 my-7'>
+        <div className='md:px-3 my-7'>
             <div className='flex flex-col gap-3'>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center gap-1'>

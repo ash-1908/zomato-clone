@@ -22,6 +22,10 @@ const FoodSchema = new Mongoose.Schema({
     ref: "Restaurants",
     required: true,
   },
+  review: {
+    type: Mongoose.Types.ObjectId,
+    ref: "Reviews",
+  },
 });
 
 export const FoodModel = Mongoose.model("Foods", FoodSchema);

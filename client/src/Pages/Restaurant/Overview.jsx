@@ -13,7 +13,8 @@ import { PrevArrow } from '../../Components/CustomArrows/PrevArrow';
 import { NextArrow } from '../../Components/CustomArrows/NextArrow';
 import ReactStars from 'react-rating-stars-component';
 import ReviewCard from '../../Components/Restaurant/Reviews/ReviewCard';
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import MapView from '../../Components/Restaurant/MapView';
+
 
 const Overview = () => {
 	let settings = {
@@ -23,7 +24,16 @@ const Overview = () => {
 		slidesToScroll: 1,
 		initialSlide: 0,
 		nextArrow: <NextArrow bgWhite='true' />,
-		prevArrow: <PrevArrow bgWhite='true' />
+		prevArrow: <PrevArrow bgWhite='true' />,
+		responsive: [
+			{
+				breakpoint: 576,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			}
+		],
 	};
 	const ratingChanged = (newRating) => {
 		console.log(newRating);
@@ -83,34 +93,17 @@ const Overview = () => {
 							activeColor="#ffd700"
 						/>
 					</div>
-					<div className='mt-7 mb-5'>
+					<div className='md:hidden w-full my-5'>
+						<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi'/>
+					</div>
+					<div className='mt-10 md:mt-7 md:mb-5'>
 						<ReviewCard />
 						<ReviewCard />
 						<ReviewCard />
 					</div>
 				</div>
 				<aside style={{ height: 'fit-content' }} className='hidden md:block md:w-4/12 sticky shadow-xl p-3'>
-					<div className='my-5'>
-						<h4 className='text-xl font-medium'>Call</h4>
-						<h5 className='text-zred-500 font-medium'>+91123321312</h5>
-					</div>
-					<div className='my-5'>
-						<h4 className='text-xl font-medium mb-1'>Direction</h4>
-						<div className='w-full h-48'>
-							<MapContainer center={[25.266404618793338, 82.98079182248115]} zoom={13} scrollWheelZoom={false}>
-								<TileLayer
-									attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-									url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-								/>
-								<Marker position={[25.266404618793338, 82.98079182248115]}>
-									<Popup>
-										A pretty CSS3 popup. <br /> Easily customizable.
-									</Popup>
-								</Marker>
-							</MapContainer>
-						</div>
-					</div>
-
+					<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi'/>
 				</aside>
 			</div>
 		</>
