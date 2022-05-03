@@ -6,6 +6,7 @@ import ImageGrid from '../Components/Restaurant/ImageGrid'
 import RestaurantInfo from '../Components/Restaurant/RestaurantInfo'
 import InfoButtons from '../Components/Restaurant/InfoButtons'
 import TabContainer from '../Components/Restaurant/Tabs'
+import CartContainer from '../Components/Cart/CartContainer'
 
 //icons
 import {AiOutlineStar, AiOutlineShareAlt} from "react-icons/ai"
@@ -34,6 +35,7 @@ const RestaurantLayout = (props) => {
 				</div>
 				{props.children}
 			</div>
+			<CartContainer />
 		</>
 	)
 }
