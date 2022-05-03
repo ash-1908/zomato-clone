@@ -50,7 +50,13 @@ const Overview = () => {
 						</Link>
 					</div>
 					<div className='flex flex-wrap gap-2'>
-						<ImageCollection title="Menu" pages="3" url="https://b.zmtcdn.com/data/menus/003/19954003/4f253d50d29c0d6e272cdb3916962b90.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="Menu" />
+						<ImageCollection 
+						title="Menu" 
+						pages="3" 
+						images={[
+							"https://b.zmtcdn.com/data/menus/003/19954003/4f253d50d29c0d6e272cdb3916962b90.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
+							]} 
+						alt="Menu" />
 					</div>
 					<h4 className='font-base text-lg md:text-xl my-5'>
 						Cuisines
@@ -94,7 +100,7 @@ const Overview = () => {
 						/>
 					</div>
 					<div className='md:hidden w-full my-5'>
-						<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi'/>
+						<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi' />
 					</div>
 					<div className='mt-10 md:mt-7 md:mb-5'>
 						<ReviewCard />
@@ -103,7 +109,7 @@ const Overview = () => {
 					</div>
 				</div>
 				<aside style={{ height: 'fit-content' }} className='hidden md:block md:w-4/12 sticky shadow-xl rounded-xl p-3'>
-					<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi'/>
+					<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi' />
 				</aside>
 			</div>
 		</>
