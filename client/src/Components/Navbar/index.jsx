@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //icons
 import { FaUserAlt } from "react-icons/fa";
@@ -6,7 +6,12 @@ import { MdLocationOn } from "react-icons/md";
 import { HiChevronDown } from "react-icons/hi";
 import { BiSearchAlt } from "react-icons/bi";
 
-const MobileNav = () => {
+import SignIn from "../Auth/SignIn";
+import SignUp from "../Auth/SignUp"
+
+const MobileNav = ({signIn,signUp }) => {
+	const [isDropdownOpen, setIsDropDownOpen] = useState(false);
+
 	return (
 		<div className="flex justify-between items-center">
 			<div className="w-24 px-0.5 md:w-28">
@@ -20,15 +25,26 @@ const MobileNav = () => {
 				<button className="bg-zred-400 text-white text-sm px-3 py-2 rounded-full">
 					Use App
 				</button>
-				<span className="border border-gray-300 text-zred-400 rounded-full p-2 ml-2">
+				<div 
+				className="border cursor-pointer border-gray-300 text-zred-400 rounded-full p-2 ml-2 relative h-8 w-8"
+				onClick={() => setIsDropDownOpen((prev) => !prev)}>
+					{
+						isDropdownOpen && (
+							<div className="absolute w-24 shadow-lg text-center flex flex-col items-start right-0 top-10 z-10 bg-white rounded-lg border border-gray-400">
+								<button className="w-full hover:bg-zred-50 py-2" onClick={signIn}>Sign In</button>
+								<hr className="w-full " />
+								<button className="w-full hover:bg-zred-50 py-2" onClick={signUp}>Sign Up</button>
+							</div>
+						)
+					}
 					<FaUserAlt />
-				</span>
+				</div>
 			</div>
 		</div>
 	);
 };
 
-const LgNav = () => {
+const LgNav = ({signIn, signUp}) => {
 	return (
 		<div className="w-full flex items-center justify-between py-3">
 			<div className="w-3/4 flex items-center">
@@ -66,10 +82,10 @@ const LgNav = () => {
 				</div>
 			</div>
 			<div className="flex items-center justify-end w-1/4">
-				<button className="text-lg text-gray-400 hover:text-gray-600 cursor:pointer mr-4">
+				<button className="text-lg text-gray-400 hover:text-gray-600 cursor:pointer mr-4" onClick={signIn}>
 					Log In
 				</button>
-				<button className="text-lg text-gray-400 hover:text-gray-600 cursor:pointer ml-4">
+				<button className="text-lg text-gray-400 hover:text-gray-600 cursor:pointer ml-4" onClick={signUp}>
 					Sign Up
 				</button>
 			</div>
@@ -78,14 +94,22 @@ const LgNav = () => {
 };
 
 const Navbar = () => {
+	const [isOpenSignIn, setisOpenSignIn] = useState(false);
+	const [isOpenSignUp, setisOpenSignUp] = useState(false);
+
+	const openSignIn = () => setisOpenSignIn(true);
+	const openSignUp = () => setisOpenSignUp(true);
+
 	return (
 		<>
+			<SignIn isOpen={isOpenSignIn} setIsOpen={setisOpenSignIn} />
+			<SignUp isOpen={isOpenSignUp} setIsOpen={setisOpenSignUp} />
 			<nav className="">
 				<div className="p-4 bg-white shadow-md lg:hidden">
-					<MobileNav />
+					<MobileNav signIn={openSignIn} signUp={openSignUp} />
 				</div>
 				<div className="hidden lg:block">
-					<LgNav />
+					<LgNav signIn={openSignIn} signUp={openSignUp} />
 				</div>
 			</nav>
 		</>
