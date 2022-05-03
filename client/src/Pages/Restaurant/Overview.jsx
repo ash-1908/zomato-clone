@@ -102,7 +102,7 @@ const Overview = () => {
 						<ReviewCard />
 					</div>
 				</div>
-				<aside style={{ height: 'fit-content' }} className='hidden md:block md:w-4/12 sticky shadow-xl p-3'>
+				<aside style={{ height: 'fit-content' }} className='hidden md:block md:w-4/12 sticky shadow-xl rounded-xl p-3'>
 					<MapView restaurantName="Rahil Restaurant" phoneNo='1234567890' mapLocation={[25.266404618793338, 82.98079182248115]} address='A-64, Kashiraj Apartments, Kamachha, Varanasi'/>
 				</aside>
 			</div>
