@@ -1,9 +1,11 @@
 //HOC
 import HomeLayoutHOC from "./HOC/Home.HOC";
 import RestaurantLayoutHOC from "./HOC/Restaurant.HOC";
+import CheckoutLayoutHOC from "./HOC/Checkout.HOC";
 
 //Pages
 import Home from "./Pages/Home";
+import Checkout from "./Pages/Checkout";
 
 //Restaurant Pages
 import Overview from "./Pages/Restaurant/Overview";
@@ -30,6 +32,7 @@ function App() {
 			<RestaurantLayoutHOC path="/restaurant/:id/photos" exact component={Photos} />
 			<RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component={Reviews} />
 			<RestaurantLayoutHOC path="/restaurant/:id/menu" exact component={Menu} />
+			<CheckoutLayoutHOC path="/order/checkout" exact component={Checkout} />
 		</>
 	);
 }
