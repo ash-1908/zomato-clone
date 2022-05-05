@@ -17,15 +17,17 @@ import Photos from "./Pages/Restaurant/Photos";
 //Hooks
 import {Route, Redirect} from "react-router-dom";
 
+//Components
+import restaurantRedirect from "./Components/Restaurant/Redirect"
+
 function App() {
 	return (
 		<>
 			<Route path="/" exact >
 				<Redirect to="/delivery" /> 
 			</Route>
-			<Route path="/restaurant/:id" exact>
-				<Redirect to="/restaurant/:id/overview" /> 
-			</Route>
+			<Route path="/restaurant/:id" exact component={restaurantRedirect}/>
+				
 			<HomeLayoutHOC path="/:tab" exact component={Home} />
 			<RestaurantLayoutHOC path="/restaurant/:id/overview" exact component={Overview} />
 			<RestaurantLayoutHOC path="/restaurant/:id/order-online" exact component={OrderOnline} />
