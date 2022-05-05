@@ -32,14 +32,14 @@ Body            user data
 Access          Public
 Method          PUT
 */
-Router.put("/update/:userId", async (req, res) => {
+Router.patch("/update/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const {userData} = req.body;
 
     const updatedUserData = await UserModel.findByIdAndUpdate(userId, {$set: userData}, {new: true});
 
-    return res.json({ user: "Successfully updated user data!" });
+    return res.json({ user: updatedUserData });
   } catch (error) {
     return res.status(201).json({ error: error.message });
   }

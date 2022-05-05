@@ -3,7 +3,10 @@ import Express from "express";
 import Cors from "cors";
 import Helmet from "helmet";
 import passport from "passport";
+
 const session = require("express-session");
+require("express-async-errors");
+
 // env
 require("dotenv").config();
 
@@ -50,9 +53,9 @@ Zomato.use("/user", Users);
 GoogleConfig(passport);
 RouteConfig(passport);
 
-//routes
+//404 route
 Zomato.get("/", (req, res) => {
-  res.json({ message: "Success!" });
+  res.json({ error: "Invalid Route" });
 });
 
 Zomato.listen(3000, () => {

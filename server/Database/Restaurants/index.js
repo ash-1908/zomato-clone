@@ -30,4 +30,6 @@ const RestaurantSchema = new Mongoose.Schema({
     }
 });
 
+RestaurantSchema.index({name: 'text'});
+
 export const RestaurantModel = Mongoose.model("Restaurants", RestaurantSchema);

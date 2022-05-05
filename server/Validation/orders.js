@@ -10,7 +10,6 @@ export const ValidateUserId = (id) => {
 
 export const ValidateNewOrder = (newOrder) => {
   const Schema = new joi.object({
-    user: joi.string().required(),
     orderDetails: joi.array().items(
       joi.object({
         food: joi.string().required(),
@@ -24,7 +23,7 @@ export const ValidateNewOrder = (newOrder) => {
         }),
       })
     ),
-    orderRating: joi.number().required().min(1).max(5),
+    orderRating: joi.number().min(1).max(5),
   });
 
   return Schema.validateAsync(newOrder);

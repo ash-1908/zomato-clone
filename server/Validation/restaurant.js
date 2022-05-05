@@ -39,9 +39,8 @@ export const ValidateRestaurantId = (id) => {
 };
 
 export const ValidateRestaurantSearchString = (str) => {
-  const Schema = new joi.object({
-    searchString: joi.string().required().min(1).max(30),
-  });
+
+  const Schema = joi.string().required().min(1).max(30);
 
   return Schema.validateAsync(str);
 };

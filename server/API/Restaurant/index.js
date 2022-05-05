@@ -1,6 +1,9 @@
 // Express
 import express from "express";
 
+// PASSPORT
+import passport from "passport";
+
 //Restaurant database model
 import { RestaurantModel } from "../../Database/allModels";
 
@@ -23,20 +26,22 @@ import {
 /* 
 Route           /
 Description     Get all restaurants details based on city
-Params          None
+Query           city name
 Access          Public
 Method          GET
 */
-Router.get("/:city", async (req, res) => {
+Router.get("/", async (req, res) => {
     try {
         await ValidateRestaurantCity(city);
 
         //get city query from url
         const { city } = req.query;
+
         //find all the restaurants from the given city
         const restaurants = await RestaurantModel.find({ city });
 
         return res.json({ restaurants });
+
     } catch (error) {
         return res.status(201).json({ error: error.message });
     }
@@ -51,40 +56,44 @@ Method          GET
 */
 Router.get("/:_id", async (req, res) => {
     try {
-        await ValidateRestaurantId(req.params);
+        await ValidateRestaurantId(req.params._id);
 
         //get id parameter from url
-        const { _id } = req.params;
+        const _id = req.params._id;
+
         //find restaurant
-        const restaurant = await RestaurantModel.findOne(_id);
+        const restaurant = await RestaurantModel.findById(_id);
+
         //if restaurant not found
         if (!restaurant)
             return res.status(404).json({ error: "Restaurant not found!" });
 
         return res.json({ restaurant });
+
     } catch (error) {
         return res.status(201).json({ error: error.message });
     }
 });
 
 /* 
-Route           /
+Route           /search
 Description     Get restaurant details from search
 Params          searchString        
 Access          Public
 Method          GET
 */
-Router.get("/:searchString", async (req, res) => {
+Router.get("/search/:searchString", async (req, res) => {
     try {
-        await ValidateRestaurantSearchString(req.params);
+        const searchString = req.params.searchString;
 
-        const { searchString } = req.params;
+        await ValidateRestaurantSearchString(searchString);
 
         const restaurants = await RestaurantModel.find({
-            name: { $regex: searchString, $options: "i" }
+            $text: {$search: searchString}
         });
 
         return res.json({ restaurants });
+        
 
     } catch (error) {
         return res.status(201).json({ error: error.message });
@@ -102,10 +111,15 @@ Access          PRIVATE
 Method          POST
 */
 
-Router.post("/new", passport.authenticate("jwt"), async (req, res) => {
+Router.post("/new", passport.authenticate("jwt", {session: false}), async (req, res) => {
     try {
-        const newRetaurant = await RestaurantModal.create(req.body.retaurantData);
-        return res.json({ restaurants: newRetaurant });
+        
+        const newRetaurant = req.body.restaurantData;
+        
+        await RestaurantModel.create(newRetaurant);
+        
+        return res.status(200).json({ msg: "Success"});
+    
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
@@ -122,9 +136,9 @@ Access          PRIVATE
 Method          PATCH
 */
 
-Router.patch("/update", passport.authenticate("jwt"), async (req, res) => {
+Router.patch("/update", passport.authenticate("jwt", {session: false}), async (req, res) => {
     try {
-        const updatedRestaurant = await RestaurantModal.findByIdAndUpdate(
+        const updatedRestaurant = await RestaurantModel.findByIdAndUpdate(
             req.body.retaurantData._id,
             { $set: req.body.retaurantData },
             { new: true }
@@ -149,10 +163,10 @@ Access          PRIVATE
 Method          DELETE
 */
 
-Router.delete("/delete", passport.authenticate("jwt"), async (req, res) => {
+Router.delete("/delete", passport.authenticate("jwt", {session: false}), async (req, res) => {
     try {
-        const deleteRestaurant = await RestaurantModal.findByIdAndRemove(
-            req.body.retaurantData._id
+        const deleteRestaurant = await RestaurantModel.findByIdAndRemove(
+            req.query._id
         );
         return res.json({ restaurants: Boolean(deleteRestaurant) });
     } catch (error) {

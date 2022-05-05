@@ -1,8 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+
+import { useDispatch } from "react-redux";
+
 //icons
 import { AiFillStar } from "react-icons/ai";
 
+//image reducer
+import {getImage} from "../../Redux/Reducer/Image/Image.Action"
+
 const RestaurantCard = (props) => {
+
+	const [image, setImage] = useState({
+		images: []
+	});
+
+	const dispatch = useDispatch();
+
+	useEffect(()=> {
+		props.photos && dispatch(getImage(props.photos)).then((data) => 
+		setImage(data.payload.image));
+	}, [props.photos]);
+
 	return (
 		<div className="w-full md:w-1/2 lg:w-1/3 hover:shadow-xl rounded-xl p-2 my-5 border border-transparent transition ease-in-out duration-400 hover:border-gray-200">
 			<div className="relative w-full h-56 xl:h-64">
@@ -22,7 +40,7 @@ const RestaurantCard = (props) => {
 					<span className="bg-gray-100 text-gray-600 px-1 rounded mr-3 text-xs py-0.5">{props.deliveryDuration} min</span>
 				</div>
 				<img
-					src={props.photos.length && props.photos[0]}
+					src={image.images.length && image.images[0].location}
 					alt="restaurant image"
 					className="w-full h-full object-cover rounded-xl relative"
 				/>

@@ -30,6 +30,10 @@ Router.get("/:_id", passport.authenticate("jwt", {session: false}), async (req, 
     }
 });
 
+
+// POST METHODS
+
+
 /* 
 Route           /new
 Description     add new order
@@ -40,12 +44,12 @@ Method          POST
 Router.post("/new/:_id", async (req, res) => {
     try {
         await ValidateUserId(req.params);
-        await ValidateNewOrder(req.body);
+        await ValidateNewOrder(req.body.order);
 
         const {_id} = req.params;
-        const {newOrder} = req.body;
+        const {order} = req.body;
 
-        const addNewOrder = await OrderModel.findOneAndUpdate({user: _id}, {$push:{orderDetails: newOrder}}, {new: true});
+        const addNewOrder = await OrderModel.findOneAndUpdate({user: _id}, {$push:{orderDetails: order}}, {new: true});
 
          return res.json({order: addNewOrder});
 

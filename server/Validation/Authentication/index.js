@@ -20,7 +20,7 @@ export const ValidateSignup = (userData) => {
 export const ValidateSignin = (userData) => {
   const Schema = joi.object({
     email: joi.string().email().required().max(40),
-    password: joi.string().required().min(8).max(40),
+    password: joi.string().required().min(5).max(40),
   });
 
   return Schema.validateAsync(userData);
