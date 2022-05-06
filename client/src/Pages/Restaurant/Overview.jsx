@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
 import Slider from 'react-slick';
+
+import { useSelector, useDispatch } from "react-redux"
 
 //icons
 import { BiRightArrowAlt } from "react-icons/bi"
@@ -16,7 +18,33 @@ import ReviewCard from '../../Components/Restaurant/Reviews/ReviewCard';
 import MapView from '../../Components/Restaurant/MapView';
 
 
+import { getImage } from "../../Redux/Reducer/Image/Image.Action"
+
+
 const Overview = () => {
+	const [menuImages, setMenuImages] = useState({ images: [] })
+
+	const reduxState = useSelector((globalStore) => {
+		return globalStore.restaurant.selectedRestaurant.restaurant;
+	});
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (reduxState) {
+			dispatch(getImage(reduxState?.menuImages)).then((data) => {
+				const images = [];
+				console.log(data)
+				data.payload.image.images.map(({ location }) => images.push(location));
+				setMenuImages(images);
+			});
+		}
+	}, [])
+
+	const ratingChanged = (newRating) => {
+		console.log(newRating);
+	};
+
 	let settings = {
 		infinite: true,
 		speed: 500,
@@ -35,9 +63,7 @@ const Overview = () => {
 			}
 		],
 	};
-	const ratingChanged = (newRating) => {
-		console.log(newRating);
-	};
+
 	return (
 		<>
 			<div className='flex flex-col md:flex-row'>
@@ -50,13 +76,11 @@ const Overview = () => {
 						</Link>
 					</div>
 					<div className='flex flex-wrap gap-2'>
-						<ImageCollection 
-						title="Menu" 
-						pages="3" 
-						images={[
-							"https://b.zmtcdn.com/data/menus/003/19954003/4f253d50d29c0d6e272cdb3916962b90.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
-							]} 
-						alt="Menu" />
+						<ImageCollection
+							title="Menu"
+							pages={menuImages.length}
+							images={menuImages}
+							alt="Menu" />
 					</div>
 					<h4 className='font-base text-lg md:text-xl my-5'>
 						Cuisines

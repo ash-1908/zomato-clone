@@ -31,9 +31,7 @@ export const ValidateRestaurantCity = (city) => {
 }
 
 export const ValidateRestaurantId = (id) => {
-  const Schema = new joi.object({
-    _id: joi.string().required()
-  });
+  const Schema = joi.string().required();
 
   return Schema.validateAsync(id);
 };

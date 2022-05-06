@@ -14,7 +14,7 @@ const ImageCollection = (props) => {
         <ImageViewer
           src={ props.images }
           currentIndex={ currentImage }
-          disableScroll={ false }
+          disableScroll={ true }
           closeOnClickOutside={ true }
           onClose={ closeViewer }
         />

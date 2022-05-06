@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { useParams } from 'react-router-dom'
+import {useDispatch} from "react-redux"
 
 //components
 import RestaurantNavbar from '../Components/Restaurant/Navbar'
@@ -13,16 +15,54 @@ import {AiOutlineStar, AiOutlineShareAlt} from "react-icons/ai"
 import {RiDirectionLine} from "react-icons/ri"
 import {BsBookmarkPlus} from "react-icons/bs"
 
+// Redux actions
+import {getSpecificRestaurant} from "../Redux/Reducer/Restaurant/Restaurant.action"
+import {getImage} from "../Redux/Reducer/Image/Image.Action"
+
 const RestaurantLayout = (props) => {
+	const {id} = useParams();
+	const dispatch = useDispatch();
+
+	const [restaurant, setRestaurant] = useState({
+		images: [],
+		name: "",
+		cuisine: "",
+		address: ""	,
+		restaurantTimings: ""
+	});
+
+	useEffect(() => {
+		dispatch(getSpecificRestaurant(id)).then((data) => {
+			
+			setRestaurant((prev) => ({
+				...prev,
+				...data.payload.restaurant
+			}));
+			
+			dispatch(getImage(data.payload.restaurant.photos)).then(data => setRestaurant(prev => (
+				{
+					...prev, 
+					...data.payload.image
+				})));
+		});
+	}, []);
+
 	return (
 		<>
 			<header className="container mx-auto xl:px-40 lg:border-b lg:border-gray-100">
 				<RestaurantNavbar />
 			</header>
 			<div className="container mx-auto px-5 xl:px-40">
-				<ImageGrid images={["https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.ejj0IBWHM_RdyZIzwBN0-QHaEz?pid=ImgDet&rs=1"]} />
+				<ImageGrid 
+			 		images={restaurant.images} />
 				
-				<RestaurantInfo restaurantName="Domino's" restaurantRating="4" deliveryRating="4.5" cuisine="Pizza" address="Rathayatra, Varanasi" />
+				<RestaurantInfo 
+					restaurantName={restaurant.name} 
+					restaurantRating={restaurant.rating || 0} 
+					deliveryRating={restaurant.rating || 0} 
+					cuisine={restaurant.cuisine} 
+					address={restaurant.address} 
+					restaurantTimings={restaurant.restaurantTimings}/>
 
 				<div className='flex flex-wrap'>
 				<InfoButtons isActive><AiOutlineStar className='mr-1' />Add Review</InfoButtons>
