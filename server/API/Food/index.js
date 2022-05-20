@@ -15,13 +15,29 @@ import {ValidateRestaurantId, ValidateCategory} from "../../Validation/food";
 // GET METHODS
 
 /* 
-Route           /
-Description     Get all foods from a particular restaurant
+Route           /:_id
+Description     Get individual food item based on id
 Params          _id
 Access          Public
 Method          GET
 */
 Router.get("/:_id", async (req, res) => {
+    try {
+        const {_id} = req.params;
+        const foods = await FoodModel.findById(_id);
+        return res.json({foods});
+    } catch (error) {
+        return res.status(201).json({error: error.message});
+    }
+});
+/* 
+Route           /r
+Description     Get all foods from a particular restaurant
+Params          _id
+Access          Public
+Method          GET
+*/
+Router.get("/r/:_id", async (req, res) => {
     try {
         await ValidateRestaurantId(req.params);
 

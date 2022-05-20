@@ -1,20 +1,34 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import {useSelector, useDispatch} from "react-redux"
 
 //components
 import MenuListContainer from '../../Components/Restaurant/Order-Online/MenuListContainer'
 import FloatMenuButton from '../../Components/Restaurant/Order-Online/FloatMenuButton'
-import FoodItem from '../../Components/Restaurant/Order-Online/FoodItem'
 import FoodList from '../../Components/Restaurant/Order-Online/FoodList'
 
 //icons
 import { AiOutlineCompass } from 'react-icons/ai'
 import { AiOutlineFieldTime } from 'react-icons/ai'
 
+//redux actions
+import {getFood, getFoodList} from "../../Redux/Reducer/Food/Food.Action"
+
 const OrderOnline = () => {
+  const [menu, setMenu] = useState([]);
+
+  const reduxState = useSelector((globalStore) => globalStore.restaurant.selectedRestaurant.restaurant);
+  
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    reduxState && dispatch(getFoodList(reduxState.menu)).then((data) => setMenu(data.payload.menus.menus));
+  },[reduxState])
+  
   return (
     <>
       <div className='w-full flex items-start gap-5 h-screen'>
-        <aside className='hidden md:flex flex-col gap-1 w-1/4 border-r border-gray-200 h-screen overflow-y-scroll'>
+        <aside 
+        className='hidden md:flex flex-col gap-1 w-1/4 border-r border-gray-200 h-screen overflow-y-scroll'>
           <MenuListContainer />
           <MenuListContainer />
         </aside>
@@ -32,62 +46,9 @@ const OrderOnline = () => {
           </h4>
           <section className='my-5 flex flex-col gap-5 h-screen overflow-y-scroll'>
              <div>
-             <FoodList title="Recommended" items={[{
-               image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-               title : 'Farmhouse Pizza',
-               price : '269',
-               rating : '4',
-               desc : 'Delightful combination of onion'
-             },
-             {
-              image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-              title : 'Farmhouse Pizza',
-              price : '269',
-              rating : '4',
-              desc : 'Delightful combination of onion'
-            }]}/>
-            <FoodList title="Pizza" items={[{
-               image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-               title : 'Farmhouse Pizza',
-               price : '269',
-               rating : '4',
-               desc : 'Delightful combination of onion'
-             },
-             {
-              image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-              title : 'Farmhouse Pizza',
-              price : '269',
-              rating : '4',
-              desc : 'Delightful combination of onion'
-            }]}/>
-            <FoodList title="Pizza" items={[{
-               image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-               title : 'Farmhouse Pizza',
-               price : '269',
-               rating : '4',
-               desc : 'Delightful combination of onion'
-             },
-             {
-              image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-              title : 'Farmhouse Pizza',
-              price : '269',
-              rating : '4',
-              desc : 'Delightful combination of onion'
-            }]}/>
-            <FoodList title="Pizza" items={[{
-               image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-               title : 'Farmhouse Pizza',
-               price : '269',
-               rating : '4',
-               desc : 'Delightful combination of onion'
-             },
-             {
-              image : 'https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png?fit=around|130:130&crop=130:130;*,*',
-              title : 'Farmhouse Pizza',
-              price : '269',
-              rating : '4',
-              desc : 'Delightful combination of onion'
-            }]}/>
+              {menu.map((item) => (
+                <FoodList key={item._id} {...item} />
+              ))}
              </div>
           </section>
         </div>

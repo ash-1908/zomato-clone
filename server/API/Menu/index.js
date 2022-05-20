@@ -9,7 +9,7 @@ import {ValidateRestaurantId} from "../../Validation/food";
 
 /* 
 Route           /
-Description     Get all menu based on particular restaurant
+Description     Get menu based on id
 Params          _id
 Access          Public
 Method          GET
@@ -19,7 +19,7 @@ Router.get("/:_id", async (req, res) => {
         const {_id} = req.params;
         await ValidateRestaurantId(_id);
 
-        const menus = await MenuModel.find(_id);
+        const menus = await MenuModel.findById(_id);
         
         return res.json({menus});
 

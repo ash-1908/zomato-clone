@@ -23,6 +23,24 @@ Router.post("/new", async (req, res) => {
     }
 });
 
+
+/* 
+Route           /
+Description     Get all reviews of a restaurant
+Params          Restaurant Id
+Access          Public
+Method          GET
+*/
+Router.get("/:resId", async (req, res) => {
+    try {
+        const reviews = await ReviewModel.find({restaurant: req.params.resId})
+        return res.json({reviews});
+
+    } catch (error) {
+        return res.status(201).json({error: error.message});
+    }
+});
+
 /* 
 Route           /delete
 Description     Delete a review
