@@ -15,6 +15,7 @@ import {getFood, getFoodList} from "../../Redux/Reducer/Food/Food.Action"
 
 const OrderOnline = () => {
   const [menu, setMenu] = useState([]);
+  const [selected, setSelected] = useState("");
 
   const reduxState = useSelector((globalStore) => globalStore.restaurant.selectedRestaurant.restaurant);
   
@@ -24,13 +25,26 @@ const OrderOnline = () => {
     reduxState && dispatch(getFoodList(reduxState.menu)).then((data) => setMenu(data.payload.menus.menus));
   },[reduxState])
   
+  const onClickHandler = (e) => {
+    if (e.target.id)
+        setSelected(e.target.id);
+    return;
+};
+
   return (
     <>
       <div className='w-full flex items-start gap-5 h-screen'>
         <aside 
         className='hidden md:flex flex-col gap-1 w-1/4 border-r border-gray-200 h-screen overflow-y-scroll'>
-          <MenuListContainer />
-          <MenuListContainer />
+          {
+            menu.map((item) => (
+              <MenuListContainer 
+              {...item} 
+              key={item._id} 
+              onClickHandler={onClickHandler} 
+              selected={selected} />
+            ))
+          }
         </aside>
         <div className='w-full md:w-3/4'>
           <h2 className='text-xl font-semibold'>Order Online</h2>

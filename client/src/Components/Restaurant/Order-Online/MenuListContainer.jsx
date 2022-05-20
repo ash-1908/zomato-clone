@@ -3,18 +3,17 @@ import React, { useState } from 'react'
 //components
 import MenuCategory from './MenuCategory';
 
-const MenuListContainer = () => {
-    const [selected, setSelected] = useState("");
+const MenuListContainer = (props) => {
 
-    const onClickHandler = (e) => {
-        if (e.target.id)
-            setSelected(e.target.id);
-        return;
-    };
+    
 
     return (
         <div className='w-full'>
-            <MenuCategory onClickHandler={onClickHandler} name="Recommended" items={["", ""]} isActive={selected === "Recommended"} />
+            <MenuCategory 
+            onClickHandler={props.onClickHandler} 
+            name = {props.name}
+            items = {props.items}
+            isActive={props.selected === props.name} />
         </div>
     )
 }
