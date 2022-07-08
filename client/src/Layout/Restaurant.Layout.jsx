@@ -52,7 +52,7 @@ const RestaurantLayout = (props) => {
 			<header className="container mx-auto xl:px-40 lg:border-b lg:border-gray-100">
 				<RestaurantNavbar />
 			</header>
-			<div className="container mx-auto px-5 xl:px-40">
+			<div className="container mx-auto px-5 xl:px-40 pb-10">
 				<ImageGrid 
 			 		images={restaurant.images} />
 				

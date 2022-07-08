@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 //icons
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdArrowDropleft } from 'react-icons/io';
 
 const CheckoutNavbar = () => {
+
+	const reduxState = useSelector((globalStore) => globalStore.user.user);
 	return (
 		<div className='flex items-center w-full relative justify-between py-3'>
 			<span className='flex items-center text-zred-400 cursor-pointer'><IoMdArrowDropleft className='text-2xl text-black md:text-zred-400 md:text-xl' /><p className='text-sm hidden md:block'>Back to restaurant</p></span>
@@ -19,7 +22,7 @@ const CheckoutNavbar = () => {
 				<span className='border border-gray-300 text-zred-400 rounded-full p-2 ml-2 flex items-center gap-2'>
 					<FaUserAlt />
 				</span>
-				<h4>Anmol</h4>
+				<h4>reduxState?.user?.fullName</h4>
 			</div>
 		</div>
 	);

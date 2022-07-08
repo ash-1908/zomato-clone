@@ -1,7 +1,7 @@
 import axios from "axios"
 
 //Redux types
-import { GET_USER, AUTH_USER } from './User.type' 
+import { GET_USER, AUTH_USER, SELF, CLEAR_USER } from './User.type' 
 
 export const getUser = (_id) => async (dispatch) => {
   try {
@@ -10,22 +10,32 @@ export const getUser = (_id) => async (dispatch) => {
       url: `http://localhost:3000/user/${_id}`
     });
 
-    return dispatch({ payload: user.data });
+    return dispatch({ type: GET_USER, payload: user.data });
   } catch (error) {
     return dispatch({type: "ERROR", payload: error});
   }
 }
 
-export const authUser = (_id) => async (dispatch) => {
+export const getMyself = () => async (dispatch) => {
   try {
     const user = await axios({
       method: "GET",
-      url: `http://localhost:3000/user/${_id}`
+      url: `http://localhost:3000/user/`
     });
 
-    localStorage.setItem("zomato", _id);
+    return dispatch({ type: SELF, payload: user.data });
+  } catch (error) {
+    return dispatch({type: "ERROR", payload: error});
+  }
+}
+export const clearUser = () => async (dispatch) => {
+  try {
+    const user = await axios({
+      method: "GET",
+      url: `http://localhost:3000/user/`
+    });
 
-    return dispatch({ type: GET_USER, payload: user.data });
+    return dispatch({ type: CLEAR_USER, payload: {} });
   } catch (error) {
     return dispatch({type: "ERROR", payload: error});
   }

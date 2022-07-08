@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   FoodList: []
 };
 
-const food = (state = INITIAL_STATE, action) => {
+const foodReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_FOOD_LIST: 
       return {

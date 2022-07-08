@@ -1,14 +1,36 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
+import {useDispatch} from "react-redux"
+import { signin } from '../../Redux/Reducer/Auth/Auth.Action'
+
 //icons
 import {FcGoogle} from 'react-icons/fc'
 
 export default function SignIn({isOpen, setIsOpen}) {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => setUserData(prev => ({...prev, [e.target.name] : e.target.value}))
 
   function closeModal() {
     setIsOpen(false)
   }
+
+  const submit = () => {
+    setUserData({
+      email: "",
+      password: "",
+      fullName: ""
+    });
+    dispatch(signin(userData))
+  };
+
+  const googleSignIn = () => (window.location.href = "http://localhost:3000/auth/google");
 
   return (
     <>
@@ -48,7 +70,9 @@ export default function SignIn({isOpen, setIsOpen}) {
                     <div className='w-full'>
                       <button 
                       className='w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-zred-100 hover:text-zred-600'>
-                        <span className='flex items-center gap-2 w-full justify-center '>Sign In with Google <FcGoogle /></span></button>
+                        <span className='flex items-center gap-2 w-full justify-center'
+                    onClick={googleSignIn}
+                    >Sign In with Google <FcGoogle /></span></button>
                     </div>
                     <hr className='w-full my-6' />
                     <div className='w-full'>
@@ -59,6 +83,8 @@ export default function SignIn({isOpen, setIsOpen}) {
                           type="email" 
                           id="email" 
                           name="email" 
+                          value={userData.email}
+                          onChange={handleChange}
                           className='w-full focus:bg-white bg-gray-100 px-2 h-8 border rounded-lg focus:outline-none'
                           placeholder='example@example.com'/>
                         </div>
@@ -68,6 +94,8 @@ export default function SignIn({isOpen, setIsOpen}) {
                           type="password" 
                           id="password" 
                           name="password"
+                          value={userData.password}
+                          onChange={handleChange}
                           className='w-full focus:bg-white bg-gray-100 px-2 h-8 border rounded-lg focus:outline-none'
                           placeholder='password'/>
                         </div>
@@ -75,11 +103,11 @@ export default function SignIn({isOpen, setIsOpen}) {
                     </div>
                   </div>
 
-                  <div className="mt-4 text-center">
+                  <div className="mt-4 text-center" onClick={closeModal}>
                     <button
                       type="button"
                       className="inline-flex border border-gray-200 justify-center rounded-md border border-transparent hover:bg-zred-100 px-4 py-2 text-sm font-medium hover:text-zred-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                      onClick={submit}
                     >
                       Sign In
                     </button>

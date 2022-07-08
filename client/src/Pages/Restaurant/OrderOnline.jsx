@@ -22,7 +22,7 @@ const OrderOnline = () => {
   const dispatch = useDispatch();
   
   useEffect(()=>{
-    reduxState && dispatch(getFoodList(reduxState.menu)).then((data) => setMenu(data.payload.menus.menus));
+    reduxState && dispatch(getFoodList(reduxState.menuImages)).then((data) => console.log(data.payload));
   },[reduxState])
   
   const onClickHandler = (e) => {

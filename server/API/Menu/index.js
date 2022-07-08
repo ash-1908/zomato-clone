@@ -17,7 +17,6 @@ Method          GET
 Router.get("/:_id", async (req, res) => {
     try {
         const {_id} = req.params;
-        await ValidateRestaurantId(_id);
 
         const menus = await MenuModel.findById(_id);
         

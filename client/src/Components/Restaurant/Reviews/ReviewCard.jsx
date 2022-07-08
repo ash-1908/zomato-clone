@@ -10,12 +10,12 @@ import dayjs from "dayjs"
 import { AiFillStar } from 'react-icons/ai'
 
 const ReviewCard = (props) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState("");
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getUser(props.user)).then((data) => setUser(data.payload.user.user.user))
+        dispatch(getUser(props.user)).then((data) => data.payload.user && setUser(data.payload.user.fullName))
     }, [])
 
     return (
@@ -27,7 +27,7 @@ const ReviewCard = (props) => {
                             <img src="https://b.zmtcdn.com/data/user_profile_pictures/804/d91a639bcf6bfd5d805601cb24cc1804.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A" alt="Avatar" className='w-full h-full object-cover rounded-full' />
                         </div>
                         <div className='flex flex-col'>
-                            <h6 className='text-md font-bold'>{user?.fullname}</h6>
+                            <h6 className='text-md font-bold'>{user}</h6>
                             <small className='text-xs text-gray-500'>5 Reviews &#8226; 3 Followes</small>
                         </div>
                     </div>
