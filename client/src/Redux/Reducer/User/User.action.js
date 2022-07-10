@@ -30,11 +30,6 @@ export const getMyself = () => async (dispatch) => {
 }
 export const clearUser = () => async (dispatch) => {
   try {
-    const user = await axios({
-      method: "GET",
-      url: `http://localhost:3000/user/`
-    });
-
     return dispatch({ type: CLEAR_USER, payload: {} });
   } catch (error) {
     return dispatch({type: "ERROR", payload: error});

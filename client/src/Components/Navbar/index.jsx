@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //icons
 import { FaUserAlt } from "react-icons/fa";
@@ -9,10 +9,15 @@ import { BiSearchAlt } from "react-icons/bi";
 
 import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp"
+import { signOut } from "../../Redux/Reducer/Auth/Auth.Action";
 
 const MobileNav = ({ signIn, signUp }) => {
 	const [isDropdownOpen, setIsDropDownOpen] = useState(false);
-	const reduxState = useSelector((globalStore) => globalStore.user.user)
+	const dispatch = useDispatch();
+	const reduxState = useSelector((globalStore) => globalStore.user.user);
+	const signOutHandler = () => {
+		dispatch(signOut);
+	}
 	return (
 		<div className="flex justify-between items-center">
 			<div className="w-24 px-0.5 md:w-28">
@@ -37,7 +42,7 @@ const MobileNav = ({ signIn, signUp }) => {
 							{
 								isDropdownOpen && (
 									<div className="absolute w-24 shadow-lg text-center flex flex-col items-start right-0 top-10 z-10 bg-white rounded-lg border border-gray-400">
-										<button className="w-full hover:bg-zred-50 py-2">Sign out</button>
+										<button className="w-full hover:bg-zred-50 py-2" onClick={signOutHandler}>Sign out</button>
 									</div>
 								)
 							}
@@ -69,6 +74,10 @@ const MobileNav = ({ signIn, signUp }) => {
 const LgNav = ({ signIn, signUp }) => {
 	const [isDropdownOpen, setIsDropDownOpen] = useState(false);
 	const reduxState = useSelector((globalStore) => globalStore.user.user);
+	const dispatch = useDispatch();
+	const signOutHandler = () => {
+		dispatch(signOut);
+	}
 	return (
 		<div className="w-full flex items-center justify-between py-3">
 			<div className="w-3/4 flex items-center">
@@ -116,7 +125,7 @@ const LgNav = ({ signIn, signUp }) => {
 						{
 							isDropdownOpen && (
 								<div className="absolute w-24 shadow-lg text-center flex flex-col items-start right-0 top-10 z-10 bg-white rounded-lg border border-gray-400">
-									<button className="w-full hover:bg-zred-50 py-2">Sign out</button>
+									<button className="w-full hover:bg-zred-50 py-2" onClick={signOutHandler}>Sign out</button>
 								</div>
 							)
 						}
