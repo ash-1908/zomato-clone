@@ -1,22 +1,22 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
+import React from "react";
+import { Route } from "react-router-dom";
 
-//layout
-import RestaurantLayout from '../Layout/Restaurant.Layout'
+// Layout
+import RestaurantLayout from "../Layout/Restaurant.layout";
 
-const RestaurantLayoutHOC = ({component: Component, ...rest}) => {
+const RestaurantLayoutHOC = ({ component: Component, ...rest }) => {
   return (
     <>
-        <Route 
+      <Route
         {...rest}
-        component={(props)=>(
-            <RestaurantLayout>
-                <Component {...props}/>
-            </RestaurantLayout>
+        component={(props) => (
+          <RestaurantLayout>
+            <Component {...props} />
+          </RestaurantLayout>
         )}
-        />
+      />
     </>
-  )
-}
+  );
+};
 
-export default RestaurantLayoutHOC
+export default RestaurantLayoutHOC;

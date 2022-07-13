@@ -1,10 +1,8 @@
-/* ./src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Leaflet Map */
 .leaflet-container {
-    width: inherit;
-    height: inherit;
+  width: inherit;
+  height: inherit;
 }

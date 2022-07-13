@@ -1,15 +1,21 @@
-import React from 'react'
+import React from "react";
+import classnames from "classnames";
 
 const InfoButtons = (props) => {
   return (
     <>
-      
-            <button className={`flex items-center border rounded-md p-2 border-gray-400 text-sm mr-2 mt-2${props.isActive ? ' bg-zred-400 text-gray-100' : ''}`}>
-              {props.children}
-            </button>
-   
+      <button
+        className={classnames(
+          "flex items-center gap-3 border border-zomato-400 px-4 py-2 rounded-lg",
+          {
+            " bg-zomato-400 text-white": props.isActive,
+          }
+        )}
+      >
+        {props.children}
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default InfoButtons
+export default InfoButtons;

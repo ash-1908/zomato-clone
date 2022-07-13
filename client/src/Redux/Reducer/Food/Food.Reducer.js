@@ -1,23 +1,22 @@
-// redux type
-import {GET_FOOD_LIST} from "./Food.Type"
+import { GET_FOOD_LIST } from "./Food.type";
 
-//initial state
 const INITIAL_STATE = {
-  FoodList: []
+  FoodList: [],
 };
 
-const foodReducer = (state = INITIAL_STATE, action) => {
+const FoodReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_FOOD_LIST: 
+    case GET_FOOD_LIST:
       return {
         ...state,
-        FoodList: action.payload
+        FoodList: action.payload,
       };
-    default: 
+
+    default:
       return {
-        ...state
+        ...state,
       };
   }
 };
 
-export default foodReducer;
+export default FoodReducer;

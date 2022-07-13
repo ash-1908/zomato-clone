@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import CheckoutNavbar from '../Components/Checkout/Navbar'
+// components
+import Navbar from "../Components/Navbar/checkoutNavbar";
+// redux action
+import { getCart } from "../Redux/Reducer/Cart/Cart.action";
 
 const CheckoutLayout = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
+
   return (
     <>
-      <div className='container mx-auto px-5 xl:px-40'>
-        <CheckoutNavbar />
-      </div>
-      <hr className='bg-gray-100 opacity-50 ' />
-      <div className='container mx-auto px-5 xl:px-40'>
-        {props.children}
-      </div>
+      <Navbar />
+      <div className="container mx-auto px-4 lg:px-20 ">{props.children}</div>
     </>
-  )
-}
+  );
+};
 
-export default CheckoutLayout
+export default CheckoutLayout;

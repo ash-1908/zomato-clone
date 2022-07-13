@@ -1,44 +1,37 @@
-import React, { useState } from 'react'
-import Rating from "react-rating-stars-component"
+import React, { useState } from "react";
 
-import ReviewModal from '../../Restaurant/Reviews/ReviewModal';
+// component
+import ReviewModal from "./ReviewModal";
 
 const AddReviewCard = () => {
-    const handleRating = (rating) => console.log(rating);
+  const [isOpen, setIsOpen] = useState(false);
 
-    const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    if (!localStorage.zomatoUser) {
+      return alert("Please sign in to post a review");
+    }
 
-    const openModal = () =>{
-        if(!localStorage.zomatoUser) {
-            return alert("Please sign in to post a review");
-        }    
-        setIsOpen(true)
-    };
-
-    return (
-        <div className='flex flex-col gap-2 items-start'>
-            <ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} handleRating={handleRating} />
-            <h3 className='text-xl font-base'>Rate your experience for</h3>
-            <div className=''>
-                <div className='flex items-center gap-4 text-md p-0 m-0'>
-                    <div className='flex flex-row-reverse items-center gap-2'>
-                        <label htmlFor="dining">Dining</label>
-                        <input type="radio" name='review' id='dining' className='w-4 h-4' />
-                    </div>
-                    <div className='flex flex-row-reverse items-center gap-2'>
-                        <label htmlFor="delivery">Delivery</label>
-                        <input type="radio" name='review' id='delivery' className='w-4 h-4' />
-                    </div>
-                </div>
-                <div classNames='p-0 m-0'>
-                    <Rating count={5} onChange={handleRating} size={26} classNames='p-0 m-0' />
-                </div>
-            </div>
-            <button onClick={openModal} className='text-sm text-zred-400'>
-                Write a review
-            </button>
+    setIsOpen(true);
+  };
+  return (
+    <>
+      <ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <h3 className="text-xl font-medium">Rate your experience for</h3>
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <input type="radio" name="review" id="dining" />
+          <label htmlFor="dining">Dining</label>
         </div>
-    )
-}
+        <div className="flex items-center gap-2">
+          <input type="radio" name="review" id="delivery" />
+          <label htmlFor="delivery">Delivery</label>
+        </div>
+      </div>
+      <button onClick={openModal} className="text-zomato-400">
+        Write a review
+      </button>
+    </>
+  );
+};
 
-export default AddReviewCard
+export default AddReviewCard;

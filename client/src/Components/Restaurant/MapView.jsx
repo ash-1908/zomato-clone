@@ -1,45 +1,49 @@
-import React from 'react'
+import React from "react";
+import { MdContentCopy } from "react-icons/md";
+import { FaDirections } from "react-icons/fa";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-//components
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+//[12.988134202889283, 77.59405893120281]
+const Mapview = (props) => {
+  return (
+    <>
+      <div>
+        <h4 className="text-xl font-medium">Call</h4>
+        <h5 className="text-zomato-400 font-medium">{props.phno}</h5>
+      </div>
+      <div>
+        <h4 className="text-xl font-medium">Direction</h4>
+        <div className="w-full h-48">
+          <MapContainer
+            center={props.mapLocation}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={props.mapLocation}>
+              <Popup>{props.title}</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+      </div>
+      <p>{props.address}</p>
+      <div className="flex items-center gap-3">
+        <button className="flex items-center gap-2 px-3 py-2 text-gray-700 border border-gray-400 rounded-lg">
+          <MdContentCopy /> Copy
+        </button>
 
-//icons
-import { AiOutlineCopy } from 'react-icons/ai'
-import { RiDirectionLine } from 'react-icons/ri'
+        <button className="flex items-center gap-2 px-3 py-2 text-gray-700 border border-gray-400 rounded-lg">
+          <span className="text-zomato-400">
+            <FaDirections />
+          </span>{" "}
+          Direction
+        </button>
+      </div>
+    </>
+  );
+};
 
-const MapView = (props) => {
-    return (
-        <>
-            <div className='my-5'>
-						<h4 className='text-xl font-medium'>Call</h4>
-						<h5 className='text-zred-500 font-medium'>{props.phoneNo}</h5>
-					</div>
-					<div className='my-5'>
-						<h4 className='text-xl font-medium mb-1'>Direction</h4>
-						<div className='w-full h-48'>
-							<MapContainer center={props.mapLocation} zoom={13} scrollWheelZoom={false}>
-								<TileLayer
-									attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-									url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-								/>
-								<Marker position={props.mapLocation}>
-									<Popup>
-										{props.restaurantName}
-									</Popup>
-								</Marker>
-							</MapContainer>
-						</div>
-					</div>
-					<p>{props.address}</p>
-					<div className='flex items-center gap-2 my-5'>
-						<button>
-							<span className='flex gap-1 items-center border px-3 py-1 border-zred-400 rounded-md text-zred-400 hover:text-white hover:bg-zred-400'><AiOutlineCopy />Copy</span></button>
-						<button>
-							<span className='flex gap-1 items-center border px-3 py-1 border-zred-400 rounded-md text-zred-400 hover:text-white hover:bg-zred-400'><RiDirectionLine />Directions</span>
-						</button>
-					</div>
-        </>
-    )
-}
-
-export default MapView
+export default Mapview;
