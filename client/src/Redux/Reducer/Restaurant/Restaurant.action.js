@@ -1,30 +1,33 @@
-import axios from "axios"
+import axios from "axios";
 
-//Redux types
-import { GET_RESTAURANT, GET_SPECIFIC_RESTAURANT } from './Restaurant.type'
+// Redux types
+import { GET_RESTAURANT, GET_SPECIFIC_RESTAURANT } from "./restaurant.type";
 
-export const getRestaurant = (city) => async (dispatch) => {
+export const getRestaurant = () => async (dispatch) => {
   try {
     const restaurantList = await axios({
       method: "GET",
-      url: `http://localhost:3000/restaurant/?city=${city}`
+      url: "http://localhost:4000/restaurant/?city=Bangalore",
     });
 
     return dispatch({ type: GET_RESTAURANT, payload: restaurantList.data });
   } catch (error) {
-    return dispatch({type: "ERROR", payload: error});
+    return dispatch({ type: "ERROR", payload: error });
   }
-}
+};
 
-export const getSpecificRestaurant = (id) => async (dispatch) => {
+export const getSpecificRestaurant = (_id) => async (dispatch) => {
   try {
     const restaurant = await axios({
       method: "GET",
-      url: `http://localhost:3000/restaurant/${id}`
+      url: `http://localhost:4000/restaurant/${_id}`,
     });
 
-    return dispatch({ type: GET_SPECIFIC_RESTAURANT, payload: restaurant.data });
+    return dispatch({
+      type: GET_SPECIFIC_RESTAURANT,
+      payload: restaurant.data,
+    });
   } catch (error) {
-    return dispatch({type: "ERROR", payload: error});
+    return dispatch({ type: "ERROR", payload: error });
   }
-}
+};

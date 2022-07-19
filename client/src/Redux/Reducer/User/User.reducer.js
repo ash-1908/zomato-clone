@@ -1,29 +1,30 @@
-import { GET_USER, SELF, CLEAR_USER } from "./User.type"
+import { GET_USER, SELF, CLEAR_USER } from "./user.type";
 
 const INITIAL_STATE = {
   user: {},
 };
 
-const userReducer = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
-    case GET_USER: 
+const UserReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case GET_USER:
       return {
         ...state,
-        user: action.payload
       };
-    case CLEAR_USER:
-      return {};
+
     case SELF:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       };
-    default: 
-      return {
-        ...state
-      }; 
+      
+    case CLEAR_USER:
+      return {};
 
+    default:
+      return {
+        ...state,
+      };
   }
 };
 
-export default userReducer;
+export default UserReducer;

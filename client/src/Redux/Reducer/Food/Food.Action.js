@@ -1,30 +1,30 @@
-// libraries
-import axios from "axios"
+import axios from "axios";
 
 // redux types
 import {GET_FOOD_LIST, GET_FOOD} from "./Food.type"
 
-export const getFood = (foodId) => async(dispatch) => {
+export const getFood = (foodId) => async (dispatch) => {
   try {
-    const food = await axios({
+    const Food = await axios({
       method: "GET",
-      url: `http://localhost:3000/food/${foodId}`
+      url: `http://localhost:4000/food/${foodId}`,
     });
-  
-    return dispatch({type: GET_FOOD, payload: food.data});
-  } catch(error) {
-    return dispatch({type: "ERROR", payload: error.message});
+
+    return dispatch({ type: GET_FOOD, payload: Food.data });
+  } catch (error) {
+    return dispatch({ type: "ERROR", payload: error });
   }
-}
-export const getFoodList = (menuId) => async(dispatch) => {
+};
+
+export const getFoodList = (menuId) => async (dispatch) => {
   try {
-    const food = await axios({
+    const Menu = await axios({
       method: "GET",
-      url: `http://localhost:3000/menu/${menuId}`
+      url: `http://localhost:4000/menu/list/${menuId}`,
     });
-  
-    return dispatch({type: GET_FOOD_LIST, payload: food.data});
-  } catch(error) {
-    return dispatch({type: "ERROR", payload: error.message});
+
+    return dispatch({ type: GET_FOOD_LIST, payload: Menu.data });
+  } catch (error) {
+    return dispatch({ type: "ERROR", payload: error });
   }
-}
+};

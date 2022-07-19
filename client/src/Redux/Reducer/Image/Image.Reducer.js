@@ -1,23 +1,22 @@
-// redux type
-import {GET_IMAGE} from "./Image.Type"
+import { GET_IMAGE } from "./Image.type";
 
-//initial state
 const INITIAL_STATE = {
-  Image: []
+  Image: [],
 };
 
-const imageReducer = (state = INITIAL_STATE, action) => {
+const ImageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_IMAGE: 
+    case GET_IMAGE:
       return {
         ...state,
-        Image: action.payload
+        Image: action.payload,
       };
-    default: 
+
+    default:
       return {
-        ...state
+        ...state,
       };
   }
 };
 
-export default imageReducer;
+export default ImageReducer;

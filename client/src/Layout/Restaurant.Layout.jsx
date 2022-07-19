@@ -21,8 +21,14 @@ import { getImage } from '../Redux/Reducer/Image/Image.Action';
 import { getCart } from '../Redux/Reducer/Cart/Cart.Action';
 
 const RestaurantLayout = (props) => {
-	const { id } = useParams();
-	const dispatch = useDispatch();
+  const [restaurant, setRestaurant] = useState({
+    images: [],
+    name: "",
+    cuising: "",
+    address: "",
+  });
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
 	const [restaurant, setRestaurant] = useState({
 		images: [],

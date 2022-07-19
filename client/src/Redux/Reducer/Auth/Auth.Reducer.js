@@ -6,25 +6,25 @@ const INITIAL_STATE = {
   
 };
 
-const authReducer = (state = INITIAL_STATE, action) => {
+const AuthReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SIGN_IN: 
+    case SIGN_IN:
+      return {
+        ...state,
+      };
+      
+    case SIGN_UP:
       return {
         ...state, 
         ...action.payload
       };
 
-    case SIGN_UP: 
+    default:
       return {
         ...state,
         ...action.payload
       };
-
-    default: 
-      return {
-        ...state
-      };
   }
 };
 
-export default authReducer;
+export default AuthReducer;

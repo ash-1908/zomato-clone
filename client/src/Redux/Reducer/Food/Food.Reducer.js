@@ -1,7 +1,6 @@
 // redux type
 import { GET_FOOD_LIST } from './Food.type';
 
-//initial state
 const INITIAL_STATE = {
 	FoodList: [],
 };

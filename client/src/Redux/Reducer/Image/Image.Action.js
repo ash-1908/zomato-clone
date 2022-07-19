@@ -1,18 +1,17 @@
-// libraries
-import axios from "axios"
+import axios from "axios";
 
-// redux types
-import {GET_IMAGE} from "./Image.Type"
+// Redux types
+import { GET_IMAGE } from "./Image.type";
 
-export const getImage = (_id) => async(dispatch) => {
+export const getImage = (_id) => async (dispatch) => {
   try {
-    const image = await axios({
+    const Image = await axios({
       method: "GET",
-      url: `http://localhost:3000/image/${_id}`
+      url: `http://localhost:4000/image/${_id}`,
     });
-  
-    return dispatch({type: GET_IMAGE, payload: image.data});
-  } catch(error) {
-    return dispatch({type: "ERROR", payload: error.message});
+
+    return dispatch({ type: GET_IMAGE, payload: Image.data });
+  } catch (error) {
+    return dispatch({ type: "ERROR", payload: error });
   }
-}
+};

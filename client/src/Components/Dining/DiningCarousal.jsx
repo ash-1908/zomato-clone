@@ -1,60 +1,60 @@
-import React from 'react'
-import { NextArrow } from '../CustomArrows/NextArrow';
-import { PrevArrow } from '../CustomArrows/PrevArrow';
-import PictureCarousalCard from '../PictureCarousal'
-import Slider from 'react-slick';
+import React from "react";
+import Slider from "react-slick";
+
+// components
+import PictureCarousalCard from "../PictureCarousal";
+import { NextArrow, PrevArrow } from "../CarousalArrow";
 
 const DiningCarousal = () => {
-    let settings = {
-		infinite: true,
-		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		initialSlide: 0,
-		nextArrow: <NextArrow />,
-		prevArrow: <PrevArrow />,
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
-			{
-				breakpoint: 1023,
-				settings: {
-					slidesToShow: 4,
-				},
-			},
-			{
-				breakpoint: 767,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1,
-				},
-			},
-			{
-				breakpoint: 480,
-				settings: {
-				  slidesToShow: 1,
-				  slidesToScroll: 1,
-				  arrows: false,
-				  swipeToSlide: true
-				}
-			}
-		],
-		
-	};
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
-    <div className='w-full mt-10'>
-        {
-            <Slider {...settings}>
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-                <PictureCarousalCard />
-            </Slider>
-        }
+    <div className="w-full">
+      <Slider {...settings}>
+        <PictureCarousalCard />
+        <PictureCarousalCard />
+        <PictureCarousalCard />
+        <PictureCarousalCard />
+        <PictureCarousalCard />
+        <PictureCarousalCard />
+        <PictureCarousalCard />
+      </Slider>
     </div>
-  )
-}
+  );
+};
 
-export default DiningCarousal
+export default DiningCarousal;
