@@ -2,18 +2,22 @@
 import {SIGN_IN, SIGN_UP} from "./Auth.Type"
 
 //initial state
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  
+};
 
 const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SIGN_IN: 
       return {
-        ...state,
+        ...state, 
+        ...action.payload
       };
 
     case SIGN_UP: 
       return {
         ...state,
+        ...action.payload
       };
 
     default: 

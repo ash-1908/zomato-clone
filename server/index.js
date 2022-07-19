@@ -64,11 +64,11 @@ Zomato.get('/', (req, res) => {
 	res.json({ error: 'Invalid Route' });
 });
 
-Zomato.listen(3000, () => {
-	console.log('Server is running');
+Zomato.listen(4000, () => {
+	console.log('Server is running at port 4000.🚀');
 	ConnectDB()
-		.then(() => console.log('Database is connected!'))
+		.then(() => console.log('Database is connected!🛩️'))
 		.catch(() =>
-			console.log('Database connection failed!')
+			console.log('Database connection failed!🤯')
 		);
 });

@@ -15,8 +15,8 @@ Method: POST
 Router.post('/new', async (req, res) => {
 	try {
 		const instance = new Razorpay({
-			key_id: process.env.RAZERPAY_ID,
-			key_secret: process.env.RAZERPAY_SECRET,
+			key_id: process.env.RZR_PAY_ID,
+			key_secret: process.env.RZR_PAY_SECRET,
 		});
 
     const options = {

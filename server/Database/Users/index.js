@@ -12,9 +12,12 @@ const UserSchema = new Mongoose.Schema({
 
 UserSchema.statics.findByEmailAndPhone = async ({email, phoneNumber}) => {
   // checking whether the email/phoneNumber exists
-  const checkUserByEmail = await UserModel.findOne({ email });
+  let checkUserByEmail, checkUserByPhone
+  if(email)
+    checkUserByEmail =  await UserModel.findOne({ email });
 
-  const checkUserByPhone = await UserModel.findOne({ phoneNumber });
+  if(phoneNumber)
+    checkUserByPhone =  await UserModel.findOne({ phoneNumber });
 
   // if user exists
   if (checkUserByEmail || checkUserByPhone) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Rating from "react-rating-stars-component"
 
-import ReviewModal from '../../Restaurant/Reviews/ReviewModal';
+import ReviewModal from './ReviewModal';
 
 const AddReviewCard = () => {
     const handleRating = (rating) => console.log(rating);
